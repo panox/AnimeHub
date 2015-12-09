@@ -1,0 +1,25 @@
+/* removes the outline */
+.btn:focus, .btn:active, .btn:active:focus {
+    outline: none;
+}
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+form {
+  margin-top: 20px;
+}
+#fall {
+  margin: 20px 0;
+  text-align: center;
+}
+.anime {
+  color: white;
+  line-height: 1.5;
+  font-size: 15px;
+  letter-spacing: 1.2px;
+  margin-bottom: 11px;
+}
+.anime img {
+  margin-bottom: 6px;
+}
