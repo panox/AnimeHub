@@ -1,3 +1,5 @@
-Can make get requests with token
-
+//Can make get requests with token
 https://anilist.co/api/browse/anime/?access_token=8urF1BprLZcDaPkcLGMJFsuPdvd96EqdYt3SmjqT
+
+//Get current season
+https://anilist.co/api/browse/anime?access_token=8urF1BprLZcDaPkcLGMJFsuPdvd96EqdYt3SmjqT&season=fall&sort=score-desc&type=TV&full_page=true&status=Currently%20Airing
