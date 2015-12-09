@@ -1,0 +1,3 @@
+Can make get requests with token
+
+https://anilist.co/api/browse/anime/?access_token=8urF1BprLZcDaPkcLGMJFsuPdvd96EqdYt3SmjqT
