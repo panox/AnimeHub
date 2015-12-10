@@ -19,3 +19,9 @@ Wireframes
 Design
 
 Readme
+
+PseudoCode
+Project Brief => add to readme
+5 lines
+
+aim for responsive
