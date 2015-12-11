@@ -23,6 +23,13 @@ gulp.task('js-min', function() {
     .pipe(gulp.dest('js'));
 });
 
+// Only Concat files javascript.js
+gulp.task('js-concat', function() {
+  return gulp.src(['src/js/app.js', 'src/js/**/*.js'])
+    .pipe(concat('javascript.js'))
+    .pipe(gulp.dest('js'))
+});
+
 // All bower dependecies become vendor.min.js
 gulp.task('vendor-min', function() {
   return gulp.src(bowerFiles())
@@ -39,6 +46,8 @@ gulp.task('default', function() {
   livereload.listen();
   gulp.watch(['src/**/*', 'index.html'], 
     [ 
+      'jshint',
+      'js-concat',
       function() { livereload.reload('index.html'); }
     ]
   );
