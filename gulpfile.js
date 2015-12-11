@@ -8,12 +8,22 @@ var jshint = require('gulp-jshint');
 
 // jshint
 gulp.task('jshint', function() {
-  return gulp.src('src/js/*.js')
+  return gulp.src('src/js/**/*.js')
     .pipe(jshint())
 });
 
+// concat js into one min file javascript.min.js
+gulp.task('js-min', function() {
+  return gulp.src(['src/js/app.js', 'src/js/**/*.js'])
+    .pipe(concat('javascript.js'))
+    .pipe(gulp.dest('js'))
+    .pipe(uglify())
+    .pipe(rename('javascript.min.js'))
+    .pipe(gulp.dest('js'));
+});
+
 // All bower dependecies become vendor.min.js
-gulp.task('minify-vendor-js', function() {
+gulp.task('vendor-min', function() {
   return gulp.src(bowerFiles())
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest('js'))
