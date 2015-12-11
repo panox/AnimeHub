@@ -4,6 +4,13 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
+var jshint = require('gulp-jshint');
+
+// jshint
+gulp.task('jshint', function() {
+  return gulp.src('src/js/**/*.js')
+    .pipe(jshint())
+});
 
 // All bower dependecies become vendor.min.js
 gulp.task('minify-vendor-js', function() {
