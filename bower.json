@@ -1,0 +1,24 @@
+{
+  "name": "AnimeHub",
+  "homepage": "",
+  "authors": [
+    "panox <panospalos@gmail.com>"
+  ],
+  "description": "bower file for AnimeHub",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "test"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}
