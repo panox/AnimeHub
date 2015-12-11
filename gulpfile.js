@@ -10,7 +10,7 @@ var jshint = require('gulp-jshint');
 gulp.task('jshint', function() {
   return gulp.src('src/js/**/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('default'))
+    .pipe(jshint.reporter('jshint-stylish'))
 });
 
 // concat js into one min file javascript.min.js
@@ -38,7 +38,7 @@ gulp.task('vendor-min', function() {
 gulp.task('default', function() {
   livereload.listen();
   gulp.watch(['src/**/*', 'index.html'], 
-    [  
+    [ 
       'js-min',
       function() { livereload.reload('index.html'); }
     ]
