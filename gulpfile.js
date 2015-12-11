@@ -37,7 +37,8 @@ gulp.task('vendor-min', function() {
 gulp.task('default', function() {
   livereload.listen();
   gulp.watch(['src/**/*', 'index.html'], 
-    [
+    [ 
+      'js-min',
       function() { livereload.reload('index.html'); }
     ]
   );
