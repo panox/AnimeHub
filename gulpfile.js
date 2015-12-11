@@ -56,4 +56,4 @@ gulp.task('default', function() {
   );
 });
 
-gulp.task('build', ['jshint', 'vendor-min', 'js-concat'])
+gulp.task('build', ['jshint', 'vendor-min', 'js-min'])
