@@ -3,6 +3,7 @@ var bowerFiles = require('main-bower-files');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
+var livereload = require('gulp-livereload');
 
 
 // All bower dependecies become vendor.min.js
@@ -13,4 +14,12 @@ gulp.task('minify-vendor-js', function() {
     .pipe(uglify())
     .pipe(rename('vendor.min.js'))
     .pipe(gulp.dest('js'));
+});
+
+// the default task
+gulp.task('default', function() {
+  livereload.listen();
+  gulp.watch(['src/**/*', 'index.html'], ['jshint', function() {
+    livereload.reload('index.html');
+  }]);
 });
