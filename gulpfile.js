@@ -16,11 +16,11 @@ gulp.task('minify-vendor-js', function() {
 });
 
 // the default task
+// checks all files and reloads index
 gulp.task('default', function() {
   livereload.listen();
-  gulp.watch(['vendor/**/*', 'src/**/*', 'index.html'], 
+  gulp.watch(['src/**/*', 'index.html'], 
     [
-      'minify-vendor-js', 
       function() { livereload.reload('index.html'); }
     ]
   );
