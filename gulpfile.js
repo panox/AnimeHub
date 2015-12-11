@@ -39,8 +39,9 @@ gulp.task('default', function() {
   livereload.listen();
   gulp.watch(['src/**/*', 'index.html'], 
     [ 
-      'js-min',
       function() { livereload.reload('index.html'); }
     ]
   );
 });
+
+gulp.task('build', ['jshint', 'vendor-min', 'js-min'])
