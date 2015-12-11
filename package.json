@@ -1,0 +1,13 @@
+{
+  "name": "AnimeHub",
+  "version": "1.0.0",
+  "description": "Package for gulp task runner",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Panos",
+  "license": "ISC",
+  "devDependencies": {
+  }
+}
