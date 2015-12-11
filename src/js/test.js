@@ -1,9 +1,1 @@
-function test() {
-  if(true) {
-
-  }
-};
-
-test();
-
-console.log("stuff")
+console.log("panos");
