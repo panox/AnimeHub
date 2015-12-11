@@ -18,7 +18,7 @@ gulp.task('minify-vendor-js', function() {
 // the default task
 gulp.task('default', function() {
   livereload.listen();
-  gulp.watch(['src/**/*', 'index.html'], 
+  gulp.watch(['vendor/**/*', 'src/**/*', 'index.html'], 
     [
       'minify-vendor-js', 
       function() { livereload.reload('index.html'); }
