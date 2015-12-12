@@ -5,3 +5,10 @@
   <div> Episodes: {{anime.selectedAnime.episodes}} </div>
   <p> {{anime.selectedAnime.description}} </p>
 </div>
+
+<ul>
+  <li ng-repeat="comment in anime.selectedAnime.comments">
+    {{comment.title}} <br>
+    {{comment.content}}
+  </li>
+</ul>
