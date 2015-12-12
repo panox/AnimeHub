@@ -12,4 +12,4 @@ function Anime($resource) {
   return $resource(API + 'anime/:id', null, {
     console.log('ok')
   });
-};
+}
