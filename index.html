@@ -8,6 +8,7 @@
 <body>
 
 <header ng-controller="usersController as user">
+  <h2>{{user.loginMessage}}</h2>
   <form ng-submit="user.login()">
     <input type="text" name="email" placeholder="What is your email?" ng-model="user.user.email">
 
