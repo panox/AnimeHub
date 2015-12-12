@@ -9,7 +9,7 @@ function animeController(Anime){
 
   self.getAll = function() {
     Anime.query(function(res) {
-      self.all = res;
+      self.all = 'test';
     });
   };
 
