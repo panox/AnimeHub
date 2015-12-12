@@ -1,9 +1,9 @@
 angular
   .module("animeHub")
-  .controller("animeController", animeController);
+  .controller("animesController", animesController);
 
-animeController.$inject = ['Anime'];
-function animeController(Anime){
+animesController.$inject = ['Anime'];
+function animesController(Anime){
 
   // object saved as self
   var self = this;
