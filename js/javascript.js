@@ -1,6 +1,6 @@
 angular
   .module("animeHub", ['ngResource', 'angular-jwt'])
-  .constant('API', $window.location.hostname.match('localhost') ? 'localhost:3000/api/' : 'animehub.herokuapp.com/api/');
+  .constant('API', window.location.hostname.match('localhost') ? 'localhost:3000/api/' : 'animehub.herokuapp.com/api/');
 angular
   .module("animeHub")
   .controller("animeController", animeController);
@@ -12,7 +12,7 @@ function animeController(Anime){
 
   self.getAll = function() {
     Anime.query(function(res) {
-      self.all = res;
+      self.all = 'test';
     });
   };
 
@@ -29,7 +29,5 @@ Anime.$inject = ['$resource'];
 
 function Anime($resource) {
   // Rsource class
-  return $resource(API + 'anime/:id', null, {
-    console.log('ok')
-  });
+  return $resource(API + 'anime/:id', null);
 }
