@@ -5,12 +5,28 @@
   <script type="text/javascript" src="/js/vendor.min.js"></script>
   <script type="text/javascript" src="/js/javascript.js"></script>
 </head>
-<body ng-controller="animeController as anime">
+<body>
+
+<header ng-controller="usersController as user">
+  <h2>{{user.loginMessage}}</h2>
+  <form ng-submit="user.login()">
+    <input type="text" name="email" placeholder="What is your email?" ng-model="user.user.email">
+
+    <input type="password" name="password" placeholder="What is your password?" ng-model="user.user.password">
+
+    <input type="submit" value="Login">
+  </form>
+</header>
+
+<main ng-controller="animesController as anime">
   <div ng-repeat="oneAnime in anime.all">
     <img ng-src="{{oneAnime.picture}}" class="img-responsive">
     <div> {{oneAnime.title}} </div>
     <div> Score: {{oneAnime.rating}} </div>
     <div> Episodes: {{oneAnime.episodes}} </div>
   </div>
+</main>
+
+
 </body>
 </html>
