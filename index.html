@@ -8,6 +8,12 @@
 </head>
 <body>
 
+  <nav>
+    <a ui-sref-active="active" ui-sref="home">Anime</a>
+    <a ui-sref-active="active" ui-sref="login">Login</a>
+    <a ui-sref-active="active" ui-sref="signup">Signup</a>
+  </nav>
+
   <header ng-controller="usersController as user">
     <h2>{{user.loginMessage}}</h2>
     <form ng-submit="user.login()">
@@ -32,15 +38,6 @@
     </form>
 
   </header>
-
-  <main ng-controller="animesController as anime">
-    <div ng-repeat="oneAnime in anime.all">
-      <img ng-src="{{oneAnime.picture}}" class="img-responsive">
-      <div> {{oneAnime.title}} </div>
-      <div> Score: {{oneAnime.rating}} </div>
-      <div> Episodes: {{oneAnime.episodes}} </div>
-    </div>
-  </main>
 
   <div ui-view></div>
 
