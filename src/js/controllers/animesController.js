@@ -17,6 +17,7 @@ function animesController(Anime, $window){
     Anime.get({"id": id }, function(res) {
       console.log(res.anime);
       $window.location = '#/anime'
+      self.selectedAnime = res.anime
     })
   };
 
