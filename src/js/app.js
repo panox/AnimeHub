@@ -23,5 +23,11 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       templateUrl: "partials/signup.html"
     });
 
+  $stateProvider
+    .state('oneAnime', { 
+      url: '/anime',
+      templateUrl: "partials/oneAnime.html"
+    });
+
   $urlRouterProvider.otherwise('/');
 }
