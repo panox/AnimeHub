@@ -22,4 +22,17 @@ function usersController(User, TokenService){
       }
     );
   };
+
+  // method to signup
+  self.signup = function() {
+    User.signup(
+      self.user, 
+      function(res) {
+        self.signupMessage = res.message;
+        self.user = {};
+      }, function(err) {
+        self.signupMessage = err.data.message;
+      }
+    );
+  };
 }
