@@ -13,7 +13,7 @@ function animesController(Anime){
 
   // gat all the anime
   Anime.query(function(res) {
-    self.all = res.animes
+    self.all = res.animes;
   });
 
 }
@@ -28,19 +28,19 @@ function usersController(User){
   var self = this;
 
   self.login = function() {
-    console.log('login')
+    console.log('login');
   };
 }
 angular
   .module("animeHub")
   .factory('Anime', Anime);
 
-Anime.$inject = ['$resource', 'API']
+Anime.$inject = ['$resource', 'API'];
 
 function Anime($resource, API) {
   return $resource(API + 'anime/:id', null, {
     'query': { method:'get', url: API + 'animes' }
-  })
+  });
 }
 angular
   .module("animeHub")
@@ -54,4 +54,21 @@ function User($resource, API) {
     'signup':{method: "POST", url: API + 'signup'}
   });
   
+}
+angular
+  .module("animeHub")
+  .service('TokenService', TokenService);
+
+TokenService.$inject = ['$window', 'jwtHelper'];
+function TokenService($window, jwtHelper) {
+  var self = this;
+
+  self.saveUserToken = function(token) {
+    $window.localStorage.setItem('userToken', token);
+  };
+
+  self.getUserToken = function() {
+    return $window.localStorage.getItem('userToken');
+  };
+
 }

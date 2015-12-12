@@ -9,6 +9,6 @@ function usersController(User){
   var self = this;
 
   self.login = function() {
-    console.log('login')
+    console.log('login');
   };
 }

@@ -7,11 +7,11 @@ function TokenService($window, jwtHelper) {
   var self = this;
 
   self.saveUserToken = function(token) {
-    $window.localStorage.setItem('userToken', token)
+    $window.localStorage.setItem('userToken', token);
   };
 
   self.getUserToken = function() {
-    return $window.localStorage.getItem('userToken')
+    return $window.localStorage.getItem('userToken');
   };
 
 }
