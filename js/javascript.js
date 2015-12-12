@@ -46,6 +46,14 @@ function animesController(Anime){
     self.all = res.animes;
   });
 
+  // get one anime
+  self.selectAnime = function(id) {
+    Anime.get({"id": id }, function(res) {
+      console.log(res.anime);
+      self.selectedAnime = res.anime
+    })
+  };
+
 }
 angular
   .module("animeHub")

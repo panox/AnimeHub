@@ -1,6 +1,6 @@
 <main ng-controller="animesController as anime">
   <div ng-repeat="oneAnime in anime.all">
-    <a ui-sref="oneAnime">
+    <a ng-click="anime.selectAnime(oneAnime._id)" ui-sref="oneAnime">
       <img ng-src="{{oneAnime.picture}}" class="img-responsive">
     </a>
     <div> {{oneAnime.title}} </div>

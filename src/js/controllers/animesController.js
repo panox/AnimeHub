@@ -14,9 +14,10 @@ function animesController(Anime){
   });
 
   // get one anime
-  self.selectAnime = function() {
-    Anime.get(function() {
-      self.selectedAnime = res.anime;
+  self.selectAnime = function(id) {
+    Anime.get({"id": id }, function(res) {
+      console.log(res.anime);
+      self.selectedAnime = res.anime
     })
   };
 
