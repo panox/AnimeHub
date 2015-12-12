@@ -23,6 +23,7 @@
     "angular": "~1.4.8",
     "angular-resource": "~1.4.8",
     "jquery": "~2.1.4",
-    "angular-jwt": "~0.0.9"
+    "angular-jwt": "~0.0.9",
+    "angular-ui-router": "~0.2.15"
   }
 }
