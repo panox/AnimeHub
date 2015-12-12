@@ -6,38 +6,13 @@
   <script type="text/javascript" src="/js/vendor.min.js"></script>
   <script type="text/javascript" src="/js/javascript.js"></script>
 </head>
-<body>
+<body ng-controller="usersController as user">
 
   <nav>
     <a ui-sref-active="active" ui-sref="home">Anime</a>
     <a ui-sref-active="active" ui-sref="login">Login</a>
     <a ui-sref-active="active" ui-sref="signup">Signup</a>
   </nav>
-
-  <header ng-controller="usersController as user">
-    <h2>{{user.loginMessage}}</h2>
-    <form ng-submit="user.login()">
-      <input type="text" name="email" placeholder="What is your email?" ng-model="user.user.email">
-
-      <input type="password" name="password" placeholder="What is your password?" ng-model="user.user.password">
-
-      <input type="submit" value="Login">
-    </form>
-
-    <h2>{{user.signupMessage}}</h2>
-    <form ng-submit="user.signup()">
-      <input type="username" name="username" placeholder="Username" ng-model="user.user.username">
-
-      <input type="picture" name="picture" placeholder="Picture" ng-model="user.user.picture">
-
-      <input type="text" name="email" placeholder="Email" ng-model="user.user.email">
-
-      <input type="password" name="password" placeholder="Password" ng-model="user.user.password">
-
-      <input type="submit" value="Sign Up">
-    </form>
-
-  </header>
 
   <div ui-view></div>
 
