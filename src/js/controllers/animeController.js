@@ -2,8 +2,8 @@ angular
   .module("animeHub")
   .controller("animeController", animeController);
 
-animeController.$inject = ['API'];
-function animeController(API){
+animeController.$inject = ['Anime', 'API'];
+function animeController(Anime, API){
 
   var self = this;
 
