@@ -13,4 +13,11 @@ function animesController(Anime){
     self.all = res.animes;
   });
 
+  // get one anime
+  self.selectAnime = function() {
+    Anime.get(function() {
+      self.selectedAnime = res.anime;
+    })
+  };
+
 }
