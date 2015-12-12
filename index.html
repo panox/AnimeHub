@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="animeHub">
 <head>
   <title>AnimeHub</title>
   <script type="text/javascript" src="js/vendor.min.js"></script>
   <script type="text/javascript" src="js/javascript.js"></script>
 </head>
-<body>
+<body ng-controller="animeController as anime">
+  {{anime.all}}
 </body>
 </html>
