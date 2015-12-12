@@ -11,5 +11,17 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       templateUrl: "partials/home.html" // the name of the file that contains our html for this stat ( a template )
     });
 
-    $urlRouterProvider.otherwise('/');
+  $stateProvider
+    .state('login', { 
+      url: '/login',
+      templateUrl: "partials/login.html"
+    });
+
+  $stateProvider
+    .state('signup', { 
+      url: '/signup',
+      templateUrl: "partials/signup.html"
+    });
+
+  $urlRouterProvider.otherwise('/');
 }
