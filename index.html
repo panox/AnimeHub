@@ -7,40 +7,41 @@
 </head>
 <body>
 
-<header ng-controller="usersController as user">
-  <h2>{{user.loginMessage}}</h2>
-  <form ng-submit="user.login()">
-    <input type="text" name="email" placeholder="What is your email?" ng-model="user.user.email">
+  <header ng-controller="usersController as user">
+    <h2>{{user.loginMessage}}</h2>
+    <form ng-submit="user.login()">
+      <input type="text" name="email" placeholder="What is your email?" ng-model="user.user.email">
 
-    <input type="password" name="password" placeholder="What is your password?" ng-model="user.user.password">
+      <input type="password" name="password" placeholder="What is your password?" ng-model="user.user.password">
 
-    <input type="submit" value="Login">
-  </form>
+      <input type="submit" value="Login">
+    </form>
 
-  <h2>{{user.signupMessage}}</h2>
-  <form ng-submit="user.signup()">
-    <input type="username" name="username" placeholder="Username" ng-model="user.user.username">
+    <h2>{{user.signupMessage}}</h2>
+    <form ng-submit="user.signup()">
+      <input type="username" name="username" placeholder="Username" ng-model="user.user.username">
 
-    <input type="picture" name="picture" placeholder="Picture" ng-model="user.user.picture">
+      <input type="picture" name="picture" placeholder="Picture" ng-model="user.user.picture">
 
-    <input type="text" name="email" placeholder="Email" ng-model="user.user.email">
+      <input type="text" name="email" placeholder="Email" ng-model="user.user.email">
 
-    <input type="password" name="password" placeholder="Password" ng-model="user.user.password">
+      <input type="password" name="password" placeholder="Password" ng-model="user.user.password">
 
-    <input type="submit" value="Sign Up">
-  </form>
+      <input type="submit" value="Sign Up">
+    </form>
 
-</header>
+  </header>
 
-<main ng-controller="animesController as anime">
-  <div ng-repeat="oneAnime in anime.all">
-    <img ng-src="{{oneAnime.picture}}" class="img-responsive">
-    <div> {{oneAnime.title}} </div>
-    <div> Score: {{oneAnime.rating}} </div>
-    <div> Episodes: {{oneAnime.episodes}} </div>
-  </div>
-</main>
+  <main ng-controller="animesController as anime">
+    <div ng-repeat="oneAnime in anime.all">
+      <img ng-src="{{oneAnime.picture}}" class="img-responsive">
+      <div> {{oneAnime.title}} </div>
+      <div> Score: {{oneAnime.rating}} </div>
+      <div> Episodes: {{oneAnime.episodes}} </div>
+    </div>
+  </main>
 
+  <div ui-view></div>
 
 </body>
 </html>
