@@ -1,6 +1,8 @@
 <main ng-controller="animesController as anime">
   <div ng-repeat="oneAnime in anime.all">
-    <img ng-src="{{oneAnime.picture}}" class="img-responsive">
+    <a ui-sref="oneAnime">
+      <img ng-src="{{oneAnime.picture}}" class="img-responsive">
+    </a>
     <div> {{oneAnime.title}} </div>
     <div> Score: {{oneAnime.rating}} </div>
     <div> Episodes: {{oneAnime.episodes}} </div>
