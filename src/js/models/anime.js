@@ -10,5 +10,3 @@ function Anime($resource) {
     console.log('ok')
   });
 }
-
-{
