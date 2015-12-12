@@ -1,0 +1,8 @@
+<h2>{{user.loginMessage}}</h2>
+<form ng-submit="user.login()">
+  <input type="text" name="email" placeholder="What is your email?" ng-model="user.user.email">
+
+  <input type="password" name="password" placeholder="What is your password?" ng-model="user.user.password">
+
+  <input type="submit" value="Login">
+</form>
