@@ -35,4 +35,9 @@ function usersController(User, TokenService){
       }
     );
   };
+
+  // method to logout
+  self.logout = function() {
+    TokenService.removeUserToken();
+  };
 }
