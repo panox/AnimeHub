@@ -5,9 +5,11 @@ angular
 animeController.$inject = ['Anime', 'API'];
 function animeController(Anime, API){
 
+  // object saved as self
   var self = this;
 
-  self.all = "test"
+  // gat all the anime
+  self.all = Anime.query();
 
   console.log(API)
 

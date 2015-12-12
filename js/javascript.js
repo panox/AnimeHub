@@ -5,13 +5,26 @@ angular
   .module("animeHub")
   .controller("animeController", animeController);
 
-animeController.$inject = ['API'];
-function animeController(API){
+animeController.$inject = ['Anime', 'API'];
+function animeController(Anime, API){
 
+  // object saved as self
   var self = this;
 
-  self.all = "test"
+  // gat all the anime
+  self.all = Anime.query();
 
   console.log(API)
 
+}
+angular
+  .module("animeHub")
+  .factory('Anime', Anime);
+
+Anime.$inject = ['$resource', 'API']
+
+function Anime($resource, API) {
+  return $resource(API + 'anime/:id', null, {
+  'query': { method:'get', url: API + 'animes' }
+  })
 }

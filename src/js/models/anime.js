@@ -6,6 +6,6 @@ Anime.$inject = ['$resource', 'API']
 
 function Anime($resource, API) {
   return $resource(API + 'anime/:id', null, {
-  'update': { method:'PUT' }
+  'query': { method:'get', url: API + 'animes' }
   })
 }
