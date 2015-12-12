@@ -6,11 +6,11 @@
   <script type="text/javascript" src="/js/javascript.js"></script>
 </head>
 <body ng-controller="animeController as anime">
-  <div ng-repeat="oneAnime in anime.all">
-    <img ng-src="{{oneAnime.image_url_lge}}" class="img-responsive">
-    <div> {{oneAnime.title_romaji}} </div>
-    <div> Score: {{oneAnime.average_score}} </div>
-    <div> Episodes: {{oneAnime.total_episodes}} </div>
+  <div ng-repeat="oneAnime in anime.all.animes">
+    <img ng-src="{{oneAnime.picture}}" class="img-responsive">
+    <div> {{oneAnime.title}} </div>
+    <div> Score: {{oneAnime.rating}} </div>
+    <div> Episodes: {{oneAnime.episodes}} </div>
   </div>
 </body>
 </html>
