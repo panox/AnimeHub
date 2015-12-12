@@ -14,11 +14,23 @@ function animesController(Anime){
   // gat all the anime
   Anime.query(function(res) {
     self.all = res.animes
-    console.log(res)
   });
 
 }
+angular
+  .module("animeHub")
+  .controller("usersController", usersController);
 
+usersController.$inject = ['User'];
+function usersController(User){
+
+  // object saved as self
+  var self = this;
+
+  self.login = function() {
+    console.log('login')
+  };
+}
 angular
   .module("animeHub")
   .factory('Anime', Anime);

@@ -11,7 +11,6 @@ function animesController(Anime){
   // gat all the anime
   Anime.query(function(res) {
     self.all = res.animes
-    console.log(res)
   });
 
 }
