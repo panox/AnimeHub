@@ -6,6 +6,16 @@
   <script type="text/javascript" src="/js/javascript.js"></script>
 </head>
 <body ng-controller="animeController as anime">
+
+  <form ng-submit="user.login()">
+    <input type="text" name="email" placeholder="What is your email?" ng-model="user.local.email">
+
+    <input type="password" name="password" placeholder="What is your password?" ng-model="user.local.password">
+
+    <input type="submit" value="Login">
+  </form>
+
+
   <div ng-repeat="oneAnime in anime.all">
     <img ng-src="{{oneAnime.picture}}" class="img-responsive">
     <div> {{oneAnime.title}} </div>
