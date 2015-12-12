@@ -49,9 +49,9 @@ function animesController(Anime, $window){
   self.selectAnime = function(id) {
     Anime.get({"id": id }, function(res) {
       console.log(res.anime);
-      $window.location = '#/anime'
-      self.selectedAnime = res.anime
-    })
+      $window.location = '#/anime';
+      self.selectedAnime = res.anime;
+    });
   };
 
 }
@@ -92,6 +92,11 @@ function usersController(User, TokenService){
       }
     );
   };
+
+  // method to logout
+  self.logout = function() {
+    TokenService.removeUserToken();
+  };
 }
 angular
   .module("animeHub")
@@ -131,6 +136,10 @@ function TokenService($window, jwtHelper) {
 
   self.getUserToken = function() {
     return $window.localStorage.getItem('userToken');
+  };
+
+  self.removeUserToken = function() {
+    $window.localStorage.removeItem('userToken');
   };
 
 }

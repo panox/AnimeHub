@@ -16,9 +16,9 @@ function animesController(Anime, $window){
   self.selectAnime = function(id) {
     Anime.get({"id": id }, function(res) {
       console.log(res.anime);
-      $window.location = '#/anime'
-      self.selectedAnime = res.anime
-    })
+      $window.location = '#/anime';
+      self.selectedAnime = res.anime;
+    });
   };
 
 }
