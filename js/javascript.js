@@ -35,9 +35,8 @@ angular
   .module("animeHub")
   .controller("animesController", animesController);
 
-animesController.$inject = ['Anime'];
-function animesController(Anime){
-
+animesController.$inject = ['Anime', '$window'];
+function animesController(Anime, $window){
   // object saved as self
   var self = this;
 
@@ -50,7 +49,7 @@ function animesController(Anime){
   self.selectAnime = function(id) {
     Anime.get({"id": id }, function(res) {
       console.log(res.anime);
-      self.selectedAnime = res.anime
+      $window.location = '#/anime'
     })
   };
 
