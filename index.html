@@ -16,6 +16,19 @@
 
     <input type="submit" value="Login">
   </form>
+
+  <form ng-submit="user.signup()">
+    <input type="username" name="username" placeholder="Username" ng-model="user.user.username">
+
+    <input type="picture" name="picture" placeholder="Picture" ng-model="user.user.picture">
+
+    <input type="text" name="email" placeholder="Email" ng-model="user.user.email">
+
+    <input type="password" name="password" placeholder="Password" ng-model="user.user.password">
+
+    <input type="submit" value="Sign Up">
+  </form>
+
 </header>
 
 <main ng-controller="animesController as anime">
