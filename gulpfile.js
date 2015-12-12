@@ -47,7 +47,7 @@ gulp.task('vendor-min', function() {
 // checks all files and reloads index
 gulp.task('default', function() {
   livereload.listen();
-  gulp.watch(['src/**/*', 'index.html'], 
+  gulp.watch(['src/**/*','src/**/**/*', 'index.html'], 
     [ 
       'jshint',
       'js-concat',
