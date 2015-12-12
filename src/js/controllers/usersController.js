@@ -10,10 +10,10 @@ function usersController(User, TokenService){
 
   // method to login
   self.login = function() {
-    console.log(self.user);
     User.login(self.user, function(res) {
       var userToken = res.token;
       TokenService.saveUserToken(userToken);
+      self.user = {}
     });
   };
 }
