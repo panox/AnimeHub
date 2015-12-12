@@ -2,8 +2,8 @@ angular
   .module("animeHub")
   .controller("usersController", usersController);
 
-usersController.$inject = ['User'];
-function usersController(User){
+usersController.$inject = ['User', 'TokenService'];
+function usersController(User, TokenService){
 
   // object saved as self
   var self = this;
@@ -12,7 +12,8 @@ function usersController(User){
   self.login = function() {
     console.log(self.user);
     User.login(self.user, function(res) {
-      console.log(res);
+      var userToken = res.token;
+      TokenService.saveUserToken(userToken);
     });
   };
 }

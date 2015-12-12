@@ -1,40 +1,6 @@
 angular
-  .module("animeHub", ['ngResource'])
+  .module("animeHub", ['ngResource', 'angular-jwt'])
   .constant('API', window.location.hostname.match('localhost') ? 'http://localhost:3000/api/' : 'http://animehub.herokuapp.com/api/');
-angular
-  .module("animeHub")
-  .controller("animesController", animesController);
-
-animesController.$inject = ['Anime'];
-function animesController(Anime){
-
-  // object saved as self
-  var self = this;
-
-  // gat all the anime
-  Anime.query(function(res) {
-    self.all = res.animes;
-  });
-
-}
-angular
-  .module("animeHub")
-  .controller("usersController", usersController);
-
-usersController.$inject = ['User'];
-function usersController(User){
-
-  // object saved as self
-  var self = this;
-
-  // method to login
-  self.login = function() {
-    console.log(self.user);
-    User.login(self.user, function(res) {
-      console.log(res);
-    });
-  };
-}
 angular
   .module("animeHub")
   .factory('Anime', Anime);
@@ -58,6 +24,41 @@ function User($resource, API) {
     'signup':{method: "POST", url: API + 'signup'}
   });
   
+}
+angular
+  .module("animeHub")
+  .controller("animesController", animesController);
+
+animesController.$inject = ['Anime'];
+function animesController(Anime){
+
+  // object saved as self
+  var self = this;
+
+  // gat all the anime
+  Anime.query(function(res) {
+    self.all = res.animes;
+  });
+
+}
+angular
+  .module("animeHub")
+  .controller("usersController", usersController);
+
+usersController.$inject = ['User', 'TokenService'];
+function usersController(User, TokenService){
+
+  // object saved as self
+  var self = this;
+
+  // method to login
+  self.login = function() {
+    console.log(self.user);
+    User.login(self.user, function(res) {
+      var userToken = res.token;
+      TokenService.saveUserToken(userToken);
+    });
+  };
 }
 angular
   .module("animeHub")
