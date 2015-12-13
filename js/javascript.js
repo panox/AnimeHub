@@ -100,6 +100,27 @@ function usersController(User, TokenService){
 }
 angular
   .module("animeHub")
+  .service('TokenService', TokenService);
+
+TokenService.$inject = ['$window', 'jwtHelper'];
+function TokenService($window, jwtHelper) {
+  var self = this;
+
+  self.saveUserToken = function(token) {
+    $window.localStorage.setItem('userToken', token);
+  };
+
+  self.getUserToken = function() {
+    return $window.localStorage.getItem('userToken');
+  };
+
+  self.removeUserToken = function() {
+    $window.localStorage.removeItem('userToken');
+  };
+
+}
+angular
+  .module("animeHub")
   .factory('Anime', Anime);
 
 Anime.$inject = ['$resource', 'API'];
@@ -121,25 +142,4 @@ function User($resource, API) {
     'signup':{method: "POST", url: API + 'signup'}
   });
   
-}
-angular
-  .module("animeHub")
-  .service('TokenService', TokenService);
-
-TokenService.$inject = ['$window', 'jwtHelper'];
-function TokenService($window, jwtHelper) {
-  var self = this;
-
-  self.saveUserToken = function(token) {
-    $window.localStorage.setItem('userToken', token);
-  };
-
-  self.getUserToken = function() {
-    return $window.localStorage.getItem('userToken');
-  };
-
-  self.removeUserToken = function() {
-    $window.localStorage.removeItem('userToken');
-  };
-
 }
