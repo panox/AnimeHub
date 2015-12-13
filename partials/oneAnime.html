@@ -21,7 +21,7 @@
     <li ng-repeat="comment in anime.selectedAnime.comments">
       {{comment.title}} <br>
       {{comment.content}}
-      <button ng-click="anime.removeComment(comment._id)">Delete</button>
+      <button ng-click="anime.removeComment(comment)">Delete</button>
     </li>
   </ul> 
 </section>

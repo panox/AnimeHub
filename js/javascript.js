@@ -71,9 +71,10 @@ function animesController($stateParams, Anime, Comment, TokenService){
       { animeId: animeId }, self.commentModel, 
       // success
       function(res) {
-        var newComment = { 
-          title: self.commentModel.title, 
-          content: self.commentModel.content
+        var newComment = {
+          _id: res.comment._id,
+          title: res.comment.title, 
+          content: res.comment.content
         };
         self.selectedAnime.comments.push(newComment);
         self.commentModel = {};
@@ -85,8 +86,10 @@ function animesController($stateParams, Anime, Comment, TokenService){
     );
   };
 
-  self.removeComment = function(id) {
-    Comment.remove({id:id});
+  self.removeComment = function(comment) {
+    Comment.remove({id: comment._id});
+    var index = self.selectedAnime.comments.indexOf(comment);
+    self.selectedAnime.comments.splice(index, 1);
   };
 
 }
