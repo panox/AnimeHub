@@ -7,8 +7,8 @@ MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
 function MainRouter($stateProvider, $urlRouterProvider) {
 
   $stateProvider
-    .state('home', { // 'home' is a name so we can refer to this state
-      url: '/', // a relative url so angular can match the route to this state
+    .state('home', { 
+      url: '/',
       templateUrl: "partials/home.html",
       controller: 'animesController as anime'
     })
@@ -45,16 +45,15 @@ function animesController($stateParams, Anime, $window){
   // get one anime
   function getOne() {
     Anime.get({ id: $stateParams.animeId }, function(res) {
-      console.log(res.anime);
+      console.log(res.anime); // console log one anime object
       self.selectedAnime = res.anime;
     });
   }
 
   if ($stateParams.animeId) {
-    getOne()
+    getOne();
   }
 
-  console.log($stateParams)
 }
 
 angular

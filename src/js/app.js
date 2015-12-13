@@ -7,8 +7,8 @@ MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
 function MainRouter($stateProvider, $urlRouterProvider) {
 
   $stateProvider
-    .state('home', { // 'home' is a name so we can refer to this state
-      url: '/', // a relative url so angular can match the route to this state
+    .state('home', { 
+      url: '/',
       templateUrl: "partials/home.html",
       controller: 'animesController as anime'
     })
