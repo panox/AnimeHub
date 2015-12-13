@@ -9,7 +9,8 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', { // 'home' is a name so we can refer to this state
       url: '/', // a relative url so angular can match the route to this state
-      templateUrl: "partials/home.html" // the name of the file that contains our html for this stat ( a template )
+      templateUrl: "partials/home.html",
+      controller: 'animesController as anime'
     })
     .state('login', { 
       url: '/login',
@@ -20,15 +21,9 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       templateUrl: "partials/signup.html"
     })
     .state('oneAnime', { 
-      url: '/anime/{animeId}',
+      url: '/anime/:animeId',
       templateUrl: "partials/oneAnime.html",
-      controller: function (Anime, $stateParams) {
-        Anime.get({"id": $stateParams.animeId}, function(res) {
-          console.log('app.js', res.anime);
-          self.selectedAnime = res.anime;
-        });
-        console.log('app.js', $stateParams.animeId)
-      }
+      controller: 'animesController as anime'
     });
 
   $urlRouterProvider.otherwise('/');

@@ -3,7 +3,7 @@ angular
   .controller("animesController", animesController);
 
 animesController.$inject = ['$stateParams', 'Anime', '$window'];
-function animesController(Anime, $window, $stateParams){
+function animesController($stateParams, Anime, $window){
   // object saved as self
   var self = this;
 
@@ -13,13 +13,16 @@ function animesController(Anime, $window, $stateParams){
   });
 
   // get one anime
-  self.selectAnime = function(id) {
-    Anime.get({"id": id}, function(res) {
+  function getOne() {
+    Anime.get({ id: $stateParams.animeId }, function(res) {
       console.log(res.anime);
-      $window.location = '#/anime/'+id;
       self.selectedAnime = res.anime;
     });
-  };
+  }
 
-  console.log("Anime Page", $stateParams)
+  if ($stateParams.animeId) {
+    getOne()
+  }
+
+  console.log($stateParams)
 }
