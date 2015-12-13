@@ -7,20 +7,23 @@
   <p> {{anime.selectedAnime.description}} </p>
 </div>
 
-<section>
+<section ng-controller="commentsController as commentsCtrl">
+
   <!-- Create New Comments -->
-  <form ng-submit="comments.create()">
+  <form ng-submit="commentsCtrl.create()">
     <input type="text" name="title" placeholder="Title" ng-model="comments.comment.title">
 
     <input type="text" name="content" placeholder="Content" ng-model="comments.comment.content">
 
     <input type="submit" value="Submit">
   </form>
+
   <!-- Show all comments -->
   <ul>
     <li ng-repeat="comment in anime.selectedAnime.comments">
       {{comment.title}} <br>
       {{comment.content}}
+      <button ng-click="commentsCtrl.removeComment(comment._id)">Delete</button>
     </li>
   </ul> 
 </section>

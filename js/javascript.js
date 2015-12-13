@@ -32,8 +32,8 @@ angular
   .module("animeHub")
   .controller("animesController", animesController);
 
-animesController.$inject = ['$stateParams', 'Anime', '$window'];
-function animesController($stateParams, Anime, $window){
+animesController.$inject = ['$stateParams', 'Anime'];
+function animesController($stateParams, Anime){
   // object saved as self
   var self = this;
 
@@ -55,7 +55,18 @@ function animesController($stateParams, Anime, $window){
   }
 
 }
+angular
+  .module("animeHub")
+  .controller("commentsController", commentsController);
 
+commentsController.$inject = ['Comment'];
+function commentsController(Comment){
+  var self = this;
+
+  self.removeComment = function(id) {
+    console.log('delete');
+  };
+}
 angular
   .module("animeHub")
   .controller("usersController", usersController);

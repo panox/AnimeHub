@@ -2,8 +2,8 @@ angular
   .module("animeHub")
   .controller("animesController", animesController);
 
-animesController.$inject = ['$stateParams', 'Anime', '$window'];
-function animesController($stateParams, Anime, $window){
+animesController.$inject = ['$stateParams', 'Anime'];
+function animesController($stateParams, Anime){
   // object saved as self
   var self = this;
 
