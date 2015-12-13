@@ -70,8 +70,21 @@ function animesController($stateParams, Anime, Comment, TokenService){
   };
 
   // edit comment
-  self.editComment = function(comment) {
-    Comment.put({id: comment._id}, function() {
+  self.editComment = function() {
+    var selectedComment = self.selectedEdit;
+    var editFormData = self.commentEditModel;
+    var editData;
+    // checks to see if user made changes
+    if ( editFormData.title === "" && editFormData.content === "") {
+      editData = selectedComment;
+    }
+    else {
+      editData = {
+        title: editFormData.title,
+        content: editFormData.content
+      }
+    }
+    Comment.update({id: selectedComment._id}, editData, function() {
       console.log('edit')
     });
   };
