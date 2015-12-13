@@ -18,4 +18,9 @@ function TokenService($window, jwtHelper) {
     $window.localStorage.removeItem('userToken');
   };
 
+  self.getUser = function() {
+    var token = self.getToken();
+    return jwtHelper.decodeToken(token);
+  };
+
 }
