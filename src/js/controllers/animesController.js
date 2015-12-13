@@ -11,6 +11,8 @@ function animesController($stateParams, Anime, Comment, TokenService){
   self.userToken = TokenService.getUser();
   // model where comment form data are saved
   self.commentModel = {};
+  // model where edit form data are saved
+  self.commentEditModel = {};
 
   // ---- ANIME -----
 
@@ -76,7 +78,10 @@ function animesController($stateParams, Anime, Comment, TokenService){
     var editData;
     // checks to see if user made changes
     if ( editFormData.title === "" && editFormData.content === "") {
-      editData = selectedComment;
+      editData = {
+        title: selectedComment.title,
+        content: selectedComment.content
+      }
     }
     else {
       editData = {
