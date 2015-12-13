@@ -82,18 +82,18 @@ function animesController($stateParams, Anime, Comment, TokenService){
       editData = {
         title: selectedComment.title,
         content: selectedComment.content
-      }
+      };
     }
     else {
       editData = {
         title: editFormData.title,
         content: editFormData.content
-      }
+      };
     }
     Comment.update({id: selectedComment._id}, editData, function() {
       var commentsArray = self.selectedAnime.comments;
       var index = commentsArray.indexOf(selectedComment);
-      self.selectedEdit = {}
+      self.selectedEdit = {};
     });
   };
 

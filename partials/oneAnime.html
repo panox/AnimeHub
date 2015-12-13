@@ -27,7 +27,7 @@
       </div>
 
       <!-- Edit From -->
-      <form ng-if="anime.selectedEdit._id === comment._id" ng-submit="anime.editComment(comment)">
+      <form ng-if="anime.selectedEdit._id === comment._id" ng-submit="anime.editComment()">
         <input name="title" ng-value="anime.selectedEdit.title" ng-model="anime.commentEditModel.title">
         <input name="content" ng-value="anime.selectedEdit.content" ng-model="anime.commentEditModel.content">
         <input type="submit" value="Submit">

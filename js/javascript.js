@@ -30,6 +30,43 @@ function MainRouter($stateProvider, $urlRouterProvider) {
 }
 angular
   .module("animeHub")
+  .factory('Anime', Anime);
+
+Anime.$inject = ['$resource', 'API'];
+
+function Anime($resource, API) {
+  return $resource(API + 'anime/:id', null, {
+    'query': { method:'get', url: API + 'animes' }
+  });
+}
+angular
+  .module("animeHub")
+  .factory('Comment', Comment);
+
+Comment.$inject = ['$resource', 'API'];
+function Comment($resource, API) {
+
+  return $resource(API + 'comment/:id', null, {
+    'update': { method:'PUT', url: API + 'comment/:id' },
+    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
+  });
+  
+}
+angular
+  .module("animeHub")
+  .factory('User', User);
+
+User.$inject = ['$resource', 'API'];
+function User($resource, API) {
+
+  return $resource(API + 'users/:id', null, {
+    'login':{method: "POST", url: API + 'login'},
+    'signup':{method: "POST", url: API + 'signup'}
+  });
+  
+}
+angular
+  .module("animeHub")
   .controller("animesController", animesController);
 
 animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService'];
@@ -41,6 +78,8 @@ function animesController($stateParams, Anime, Comment, TokenService){
   self.userToken = TokenService.getUser();
   // model where comment form data are saved
   self.commentModel = {};
+  // model where edit form data are saved
+  self.commentEditModel = {};
 
   // ---- ANIME -----
 
@@ -64,9 +103,9 @@ function animesController($stateParams, Anime, Comment, TokenService){
 
   // ---- COMMENTS -----
 
+  // create comment
   self.createComment = function(animeId) {
     self.commentModel.user = self.userToken._id;
-    console.log(self.commentModel);
     Comment.save(
       { animeId: animeId }, self.commentModel, 
       // success
@@ -86,10 +125,43 @@ function animesController($stateParams, Anime, Comment, TokenService){
     );
   };
 
+  // delete comment
   self.removeComment = function(comment) {
-    Comment.remove({id: comment._id});
-    var index = self.selectedAnime.comments.indexOf(comment);
-    self.selectedAnime.comments.splice(index, 1);
+    Comment.remove({id: comment._id}, function() {
+      var commentsArray = self.selectedAnime.comments;
+      var index = commentsArray.indexOf(comment);
+      commentsArray.splice(index, 1);
+    });
+  };
+
+  // select comment to edit comment
+  self.selectEdit = function(comment) {
+    self.selectedEdit = comment;
+  };
+
+  // edit comment
+  self.editComment = function() {
+    var selectedComment = self.selectedEdit;
+    var editFormData = self.commentEditModel;
+    var editData;
+    // checks to see if user made changes
+    if ( editFormData.title === "" && editFormData.content === "") {
+      editData = {
+        title: selectedComment.title,
+        content: selectedComment.content
+      };
+    }
+    else {
+      editData = {
+        title: editFormData.title,
+        content: editFormData.content
+      };
+    }
+    Comment.update({id: selectedComment._id}, editData, function() {
+      var commentsArray = self.selectedAnime.comments;
+      var index = commentsArray.indexOf(selectedComment);
+      self.selectedEdit = {};
+    });
   };
 
 }
@@ -135,43 +207,6 @@ function usersController(User, TokenService){
   self.logout = function() {
     TokenService.removeUserToken();
   };
-}
-angular
-  .module("animeHub")
-  .factory('Anime', Anime);
-
-Anime.$inject = ['$resource', 'API'];
-
-function Anime($resource, API) {
-  return $resource(API + 'anime/:id', null, {
-    'query': { method:'get', url: API + 'animes' }
-  });
-}
-angular
-  .module("animeHub")
-  .factory('Comment', Comment);
-
-Comment.$inject = ['$resource', 'API'];
-function Comment($resource, API) {
-
-  return $resource(API + 'comment/:id', null, {
-    'update': { method:'PUT' },
-    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
-  });
-  
-}
-angular
-  .module("animeHub")
-  .factory('User', User);
-
-User.$inject = ['$resource', 'API'];
-function User($resource, API) {
-
-  return $resource(API + 'users/:id', null, {
-    'login':{method: "POST", url: API + 'login'},
-    'signup':{method: "POST", url: API + 'signup'}
-  });
-  
 }
 angular
   .module("animeHub")
