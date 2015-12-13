@@ -65,5 +65,9 @@ function animesController($stateParams, Anime, Comment, TokenService){
   };
 
   // edit comment
+  self.selectEdit = function(comment) {
+    self.selectedEdit = comment;
+    console.log(self.selectedEdit);
+  };
 
 }
