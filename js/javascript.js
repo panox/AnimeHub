@@ -59,12 +59,30 @@ angular
   .module("animeHub")
   .controller("commentsController", commentsController);
 
-commentsController.$inject = ['Comment'];
-function commentsController(Comment){
+commentsController.$inject = ['Comment', 'TokenService'];
+function commentsController(Comment, TokenService){
   var self = this;
 
+  self.comment = {};
+
+  self.userToken = TokenService.getUser();
+
+  self.create = function(animeId) {
+    self.comment.user = self.userToken._id;
+    console.log(self.comment);
+    Comment.save(
+      { animeId: animeId },
+      self.comment, 
+      function(res) {
+        console.log(res);
+      }, function(err) {
+        console.log(err.data.message);
+      }
+    );
+  };
+
   self.removeComment = function(id) {
-    console.log('delete');
+    Comment.remove({id:id});
   };
 }
 angular
@@ -129,7 +147,8 @@ Comment.$inject = ['$resource', 'API'];
 function Comment($resource, API) {
 
   return $resource(API + 'comment/:id', null, {
-    'update': { method:'PUT' }
+    'update': { method:'PUT' },
+    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
   });
   
 }
@@ -164,6 +183,11 @@ function TokenService($window, jwtHelper) {
 
   self.removeUserToken = function() {
     $window.localStorage.removeItem('userToken');
+  };
+
+  self.getUser = function() {
+    var token = self.getUserToken();
+    return jwtHelper.decodeToken(token);
   };
 
 }

@@ -10,10 +10,10 @@
 <section ng-controller="commentsController as commentsCtrl">
 
   <!-- Create New Comments -->
-  <form ng-submit="commentsCtrl.create()">
-    <input type="text" name="title" placeholder="Title" ng-model="comments.comment.title">
+  <form ng-submit="commentsCtrl.create(anime.selectedAnime._id)">
+    <input type="text" name="title" placeholder="Title" ng-model="commentsCtrl.comment.title">
 
-    <input type="text" name="content" placeholder="Content" ng-model="comments.comment.content">
+    <input type="text" name="content" placeholder="Content" ng-model="commentsCtrl.comment.content">
 
     <input type="submit" value="Submit">
   </form>

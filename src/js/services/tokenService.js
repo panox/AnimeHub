@@ -19,7 +19,7 @@ function TokenService($window, jwtHelper) {
   };
 
   self.getUser = function() {
-    var token = self.getToken();
+    var token = self.getUserToken();
     return jwtHelper.decodeToken(token);
   };
 
