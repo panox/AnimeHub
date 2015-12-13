@@ -23,9 +23,10 @@
         {{comment.title}} <br>
         {{comment.content}}
       </div>
-      <form ng-if="anime.selectedEdit._id === comment._id">
+      <form ng-if="anime.selectedEdit._id === comment._id" ng-submit="anime.editComment(comment)">
         <input name="title" ng-value="anime.selectedEdit.title" ng-model="anime.commentEditModel.title">
-        <input name="content" ng-value="anime.commentEditModel.content">
+        <input name="content" ng-value="anime.selectedEdit.content" ng-model="anime.commentEditModel.content">
+        <input type="submit" value="Submit">
       </form>
       <!-- Check if user id === comment.user -->
       <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)">  
