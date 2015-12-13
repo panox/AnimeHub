@@ -8,12 +8,12 @@ function commentsController(Comment){
 
   self.comment = {}
 
-  self.create = function() {
+  self.create = function(animeId) {
     self.comment.user = '566c5a3737c7cc9c1e97e2f9'
     console.log('create');
     console.log(self.comment);
     Comment.save(
-      { animeId: 21034 },
+      { animeId: animeId },
       self.comment, 
       function(res) {
         console.log(res);
