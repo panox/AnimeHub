@@ -19,14 +19,16 @@
   <!-- Show all comments -->
   <ul>
     <li ng-repeat="comment in anime.selectedAnime.comments">
-      <div>
+      <div ng-if="!anime.selectedEdit">
         {{comment.title}} <br>
         {{comment.content}}
       </div>
       <form ng-if="anime.selectedEdit">
-        <input name="title" placeholder="title">
+        <input name="title" ng-value="anime.selectedEdit.title">
+        <input name="content" ng-value="anime.selectedEdit.content">
       </form>
-      <button ng-click="anime.selectEdit(comment)">Edit</button>
+      <button ng-if="!anime.selectedEdit" ng-click="anime.selectEdit(comment)">  Edit
+      </button>
       <button ng-click="anime.removeComment(comment)">Delete</button>
     </li>
   </ul> 
