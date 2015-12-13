@@ -4,4 +4,9 @@ angular
 
 commentsController.$inject = ['Comments'];
 function commentsController(Comments){
+  var self = this;
+
+  self.removeComment = function(id) {
+    
+  };
 }
