@@ -44,8 +44,8 @@ function animesController($stateParams, Anime, Comment, TokenService){
         var newComment = { 
           title: self.commentModel.title, 
           content: self.commentModel.content
-        }
-        self.selectedAnime.comments.push(newComment)
+        };
+        self.selectedAnime.comments.push(newComment);
         self.commentModel = {};
       }, 
       // error
