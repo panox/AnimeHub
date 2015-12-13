@@ -37,6 +37,11 @@ function animesController($stateParams, Anime, Comment, TokenService){
   // object saved as self
   var self = this;
 
+  // decoded info of user
+  self.userToken = TokenService.getUser();
+  // model where comment form data are saved
+  self.commentModel = {};
+
   // ---- ANIME -----
 
   // gat all the anime
@@ -47,7 +52,7 @@ function animesController($stateParams, Anime, Comment, TokenService){
   // get one anime
   function getOne() {
     Anime.get({ id: $stateParams.animeId }, function(res) {
-      console.log(res.anime); // console log one anime object
+      console.log('Anime:', res.anime); // console log one anime object
       self.selectedAnime = res.anime;
     });
   }
@@ -59,19 +64,22 @@ function animesController($stateParams, Anime, Comment, TokenService){
 
   // ---- COMMENTS -----
 
-  self.commentModel = {};
-
-  self.userToken = TokenService.getUser();
-
   self.createComment = function(animeId) {
     self.commentModel.user = self.userToken._id;
     console.log(self.commentModel);
     Comment.save(
-      { animeId: animeId },
-      self.commentModel, 
+      { animeId: animeId }, self.commentModel, 
+      // success
       function(res) {
-        console.log(res);
-      }, function(err) {
+        var newComment = { 
+          title: self.commentModel.title, 
+          content: self.commentModel.content
+        }
+        self.selectedAnime.comments.push(newComment)
+        self.commentModel = {};
+      }, 
+      // error
+      function(err) {
         console.log(err.data.message);
       }
     );
