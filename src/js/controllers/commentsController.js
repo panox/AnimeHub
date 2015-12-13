@@ -2,11 +2,14 @@ angular
   .module("animeHub")
   .controller("commentsController", commentsController);
 
-commentsController.$inject = ['Comment'];
-function commentsController(Comment){
+commentsController.$inject = ['Comment', 'TokenService'];
+function commentsController(Comment, TokenService){
   var self = this;
 
   self.comment = {}
+
+  self.userToken = TokenService.getUser()
+
 
   self.create = function(animeId) {
     self.comment.user = '566c5a3737c7cc9c1e97e2f9'
