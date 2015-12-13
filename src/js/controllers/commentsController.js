@@ -10,7 +10,6 @@ function commentsController(Comment){
 
   self.create = function(animeId) {
     self.comment.user = '566c5a3737c7cc9c1e97e2f9'
-    console.log('create');
     console.log(self.comment);
     Comment.save(
       { animeId: animeId },
@@ -24,6 +23,6 @@ function commentsController(Comment){
   };
 
   self.removeComment = function(id) {
-    console.log('delete');
+    Comment.remove({id:id})
   };
 }
