@@ -90,9 +90,11 @@ function animesController($stateParams, Anime, Comment, TokenService){
         content: editFormData.content
       };
     }
-    Comment.update({id: selectedComment._id}, editData, function() {
+    Comment.update({id: selectedComment._id}, editData, function(res) {
       var commentsArray = self.selectedAnime.comments;
       var index = commentsArray.indexOf(selectedComment);
+      commentsArray[index].title = res.comment.title;
+      commentsArray[index].content = res.comment.content;
       self.selectedEdit = {};
     });
   };
