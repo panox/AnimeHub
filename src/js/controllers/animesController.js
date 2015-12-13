@@ -22,7 +22,7 @@ function animesController($stateParams, Anime, Comment, TokenService){
   // get one anime
   function getOne() {
     Anime.get({ id: $stateParams.animeId }, function(res) {
-      console.log(res.anime); // console log one anime object
+      console.log('Anime:', res.anime); // console log one anime object
       self.selectedAnime = res.anime;
     });
   }
@@ -42,6 +42,13 @@ function animesController($stateParams, Anime, Comment, TokenService){
       // success
       function(res) {
         self.commentModel = {};
+        var newComment = { 
+          title: "stuf", 
+          content: "boop"
+        }
+        console.log('Comments Array:', self.selectedAnime.comments)
+        self.selectedAnime.comments.push(newComment)
+        console.log('Comments Array:', self.selectedAnime.comments)
       }, 
       // error
       function(err) {
