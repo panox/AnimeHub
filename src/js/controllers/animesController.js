@@ -34,9 +34,9 @@ function animesController($stateParams, Anime, Comment, TokenService){
 
   // ---- COMMENTS -----
 
+  // create comment
   self.createComment = function(animeId) {
     self.commentModel.user = self.userToken._id;
-    console.log(self.commentModel);
     Comment.save(
       { animeId: animeId }, self.commentModel, 
       // success
@@ -56,10 +56,14 @@ function animesController($stateParams, Anime, Comment, TokenService){
     );
   };
 
+  // delete comment
   self.removeComment = function(comment) {
-    Comment.remove({id: comment._id});
-    var index = self.selectedAnime.comments.indexOf(comment);
-    self.selectedAnime.comments.splice(index, 1);
+    Comment.remove({id: comment._id}, function() {
+      var index = self.selectedAnime.comments.indexOf(comment);
+      self.selectedAnime.comments.splice(index, 1);
+    });
   };
+
+  // edit comment
 
 }
