@@ -55,8 +55,10 @@ function animesController($stateParams, Anime, Comment, TokenService){
     );
   };
 
-  self.removeComment = function(id) {
-    Comment.remove({id:id});
+  self.removeComment = function(comment) {
+    Comment.remove({id: comment._id});
+    var index = self.selectedAnime.comments.indexOf(comment);
+    self.selectedAnime.comments.splice(index, 1);
   };
 
 }
