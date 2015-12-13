@@ -86,6 +86,7 @@ function animesController($stateParams, Anime, Comment, TokenService){
     }
     Comment.update({id: selectedComment._id}, editData, function() {
       console.log('edit')
+      self.selectedEdit = {}
     });
   };
 
