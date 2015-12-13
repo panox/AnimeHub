@@ -2,8 +2,8 @@ angular
   .module("animeHub")
   .controller("animesController", animesController);
 
-animesController.$inject = ['Anime', '$window'];
-function animesController(Anime, $window){
+animesController.$inject = ['$stateParams', 'Anime', '$window'];
+function animesController(Anime, $window, $stateParams){
   // object saved as self
   var self = this;
 
@@ -14,11 +14,12 @@ function animesController(Anime, $window){
 
   // get one anime
   self.selectAnime = function(id) {
-    Anime.get({"id": id }, function(res) {
+    Anime.get({"id": id}, function(res) {
       console.log(res.anime);
-      $window.location = '#/anime';
+      $window.location = '#/anime/'+id;
       self.selectedAnime = res.anime;
     });
   };
 
+  console.log("Anime Page", $stateParams)
 }
