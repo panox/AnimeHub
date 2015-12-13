@@ -61,8 +61,9 @@ function animesController($stateParams, Anime, Comment, TokenService){
   // delete comment
   self.removeComment = function(comment) {
     Comment.remove({id: comment._id}, function() {
-      var index = self.selectedAnime.comments.indexOf(comment);
-      self.selectedAnime.comments.splice(index, 1);
+      var commentsArray = self.selectedAnime.comments;
+      var index = commentsArray.indexOf(comment);
+      commentsArray.splice(index, 1);
     });
   };
 
@@ -90,7 +91,8 @@ function animesController($stateParams, Anime, Comment, TokenService){
       }
     }
     Comment.update({id: selectedComment._id}, editData, function() {
-      console.log('edit')
+      var commentsArray = self.selectedAnime.comments;
+      var index = commentsArray.indexOf(selectedComment);
       self.selectedEdit = {}
     });
   };
