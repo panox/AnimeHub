@@ -6,7 +6,10 @@ commentsController.$inject = ['Comment'];
 function commentsController(Comment){
   var self = this;
 
+  self.comment = {}
+
   self.create = function() {
+    self.comment.user = '566c5a3737c7cc9c1e97e2f9'
     console.log('create');
     console.log(self.comment);
     Comment.save(
@@ -15,7 +18,7 @@ function commentsController(Comment){
       function(res) {
         console.log(res);
       }, function(err) {
-        console.log(err);
+        console.log(err.data.message);
       }
     );
   };
