@@ -64,10 +64,16 @@ function animesController($stateParams, Anime, Comment, TokenService){
     });
   };
 
-  // edit comment
+  // select comment to edit comment
   self.selectEdit = function(comment) {
     self.selectedEdit = comment;
-    console.log(self.selectedEdit);
+  };
+
+  // edit comment
+  self.editComment = function(comment) {
+    Comment.put({id: comment._id}, function() {
+      console.log('edit')
+    });
   };
 
 }
