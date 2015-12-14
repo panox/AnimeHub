@@ -65,15 +65,21 @@ function usersController(User, TokenService, $window){
       picture: self.userEditData.picture || user.picture 
     }
     // get user login data to send
-    data = 
+    var logiData = 
       { email: user.local.email, 
         password: self.userEditData.password
       }
-    User.login(data, function() {
+    if (self.userEditData.password === "") {
+      return console.log('error')
+    }
+    // login method
+    User.login(logiData, function(res) {
+      var userToken = res.token;
+      TokenService.saveUserToken(userToken);
       User.update({id: user._id}, data,
         // sucess
         function(res) {
-          console.log(res);
+          $window.location = '/';
         }, 
         // error handling
         function(err) { 
