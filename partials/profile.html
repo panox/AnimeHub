@@ -1,5 +1,13 @@
+<!-- Show User -->
 <h2>Profile</h2>
-
 {{user.userToken.username}} <br>
 {{user.userToken.local.email}} <br>
 <img ng-src="{{user.userToken.picture}}" alt="user-image">
+
+<!-- Edit From -->
+<form ng-submit="user.editUser()">
+  <input name="username" ng-value="user.userToken.username">
+  <input name="email" ng-value="user.userToken.local.email">
+  <input name="picture" ng-value="user.userToken.picture">
+  <input type="submit" value="Submit">
+</form>
