@@ -5,9 +5,9 @@
 <img ng-src="{{user.userToken.picture}}" alt="user-image">
 
 <!-- Edit From -->
-<form ng-submit="user.editUser()">
-  <input name="username" ng-value="user.userToken.username">
-  <input name="email" ng-value="user.userToken.local.email">
-  <input name="picture" ng-value="user.userToken.picture">
+<form ng-submit="user.editUser(user.userToken)">
+  <input name="username" ng-value="user.userToken.username" ng-model="userEditData.username">
+  <input name="email" ng-value="user.userToken.local.email" ng-model="userEditData.email">
+  <input name="picture" ng-value="user.userToken.picture" ng-model="userEditData.username">
   <input type="submit" value="Submit">
 </form>
