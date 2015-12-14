@@ -56,8 +56,8 @@ function usersController(User, TokenService, $window){
   };
 
   // edit user
-  self.editUser = function() {
-    User.update({id: }, user, function(res) {
+  self.editUser = function(user) {
+    User.update({id: user._id}, user, function(res) {
       console.log(res);
     });
   };
