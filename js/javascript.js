@@ -6,6 +6,39 @@ angular
   });
 angular
   .module("animeHub")
+  .config(MainRouter);
+
+  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
+  function MainRouter($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('home', { 
+        url: '/',
+        templateUrl: "partials/home.html",
+        controller: 'animesController as anime'
+      })
+      .state('login', { 
+        url: '/login',
+        templateUrl: "partials/login.html"
+      })
+      .state('signup', { 
+        url: '/signup',
+        templateUrl: "partials/signup.html"
+      })
+      .state('oneAnime', { 
+        url: '/anime/:animeId',
+        templateUrl: "partials/oneAnime.html",
+        controller: 'animesController as anime'
+      })
+      .state('profile', { 
+        url: '/profile',
+        templateUrl: "partials/profile.html"
+      })
+
+    $urlRouterProvider.otherwise('/');
+  }
+angular
+  .module("animeHub")
   .controller("animesController", animesController);
 
 animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService'];
@@ -214,37 +247,42 @@ function usersController(User, TokenService, $window){
 }
 angular
   .module("animeHub")
-  .config(MainRouter);
+  .factory('Anime', Anime);
 
-  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
-  function MainRouter($stateProvider, $urlRouterProvider) {
+Anime.$inject = ['$resource', 'API'];
 
-    $stateProvider
-      .state('home', { 
-        url: '/',
-        templateUrl: "partials/home.html",
-        controller: 'animesController as anime'
-      })
-      .state('login', { 
-        url: '/login',
-        templateUrl: "partials/login.html"
-      })
-      .state('signup', { 
-        url: '/signup',
-        templateUrl: "partials/signup.html"
-      })
-      .state('oneAnime', { 
-        url: '/anime/:animeId',
-        templateUrl: "partials/oneAnime.html",
-        controller: 'animesController as anime'
-      })
-      .state('profile', { 
-        url: '/profile',
-        templateUrl: "partials/profile.html"
-      })
+function Anime($resource, API) {
+  return $resource(API + 'anime/:id', null, {
+    'query': { method:'get', url: API + 'animes' }
+  });
+}
+angular
+  .module("animeHub")
+  .factory('Comment', Comment);
 
-    $urlRouterProvider.otherwise('/');
-  }
+Comment.$inject = ['$resource', 'API'];
+function Comment($resource, API) {
+
+  return $resource(API + 'comment/:id', null, {
+    'update': { method:'PUT', url: API + 'comment/:id' },
+    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
+  });
+  
+}
+angular
+  .module("animeHub")
+  .factory('User', User);
+
+User.$inject = ['$resource', 'API'];
+function User($resource, API) {
+
+  return $resource(API + 'users/:id', null, {
+    'login':{method: "POST", url: API + 'login'},
+    'signup':{method: "POST", url: API + 'signup'},
+    'update': { method:'PUT'}
+  });
+  
+}
 angular
   .module("animeHub")
   .factory('AuthInterceptor', AuthInterceptor);
@@ -298,42 +336,4 @@ function TokenService($window, jwtHelper) {
     return jwtHelper.decodeToken(token);
   };
 
-}
-angular
-  .module("animeHub")
-  .factory('Anime', Anime);
-
-Anime.$inject = ['$resource', 'API'];
-
-function Anime($resource, API) {
-  return $resource(API + 'anime/:id', null, {
-    'query': { method:'get', url: API + 'animes' }
-  });
-}
-angular
-  .module("animeHub")
-  .factory('Comment', Comment);
-
-Comment.$inject = ['$resource', 'API'];
-function Comment($resource, API) {
-
-  return $resource(API + 'comment/:id', null, {
-    'update': { method:'PUT', url: API + 'comment/:id' },
-    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
-  });
-  
-}
-angular
-  .module("animeHub")
-  .factory('User', User);
-
-User.$inject = ['$resource', 'API'];
-function User($resource, API) {
-
-  return $resource(API + 'users/:id', null, {
-    'login':{method: "POST", url: API + 'login'},
-    'signup':{method: "POST", url: API + 'signup'},
-    'update': { method:'PUT'}
-  });
-  
 }
