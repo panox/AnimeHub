@@ -1,33 +1,38 @@
 angular
   .module("animeHub", ['ngResource', 'angular-jwt', 'ui.router'])
   .constant('API', window.location.hostname.match('localhost') ? 'http://localhost:3000/api/' : 'http://animehub.herokuapp.com/api/')
+  .config(function($httpProvider) {
+    $httpProvider.interceptors.push('AuthInterceptor');
+  });
+angular
+  .module("animeHub")
   .config(MainRouter);
 
-MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
-function MainRouter($stateProvider, $urlRouterProvider) {
+  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
+  function MainRouter($stateProvider, $urlRouterProvider) {
 
-  $stateProvider
-    .state('home', { 
-      url: '/',
-      templateUrl: "partials/home.html",
-      controller: 'animesController as anime'
-    })
-    .state('login', { 
-      url: '/login',
-      templateUrl: "partials/login.html"
-    })
-    .state('signup', { 
-      url: '/signup',
-      templateUrl: "partials/signup.html"
-    })
-    .state('oneAnime', { 
-      url: '/anime/:animeId',
-      templateUrl: "partials/oneAnime.html",
-      controller: 'animesController as anime'
-    });
+    $stateProvider
+      .state('home', { 
+        url: '/',
+        templateUrl: "partials/home.html",
+        controller: 'animesController as anime'
+      })
+      .state('login', { 
+        url: '/login',
+        templateUrl: "partials/login.html"
+      })
+      .state('signup', { 
+        url: '/signup',
+        templateUrl: "partials/signup.html"
+      })
+      .state('oneAnime', { 
+        url: '/anime/:animeId',
+        templateUrl: "partials/oneAnime.html",
+        controller: 'animesController as anime'
+      });
 
-  $urlRouterProvider.otherwise('/');
-}
+    $urlRouterProvider.otherwise('/');
+  }
 angular
   .module("animeHub")
   .controller("animesController", animesController);
@@ -218,6 +223,34 @@ function User($resource, API) {
   });
   
 }
+angular
+  .module("animeHub")
+  .factory('AuthInterceptor', AuthInterceptor);
+
+function AuthInterceptor(API, TokenService) {
+  return {
+
+    request: function(config) {
+      var token = TokenService.getUserToken();
+
+      if(config.url.match(API) && token) {
+        config.headers.Authorization = 'Bearer ' + token;
+      }
+
+      return config;
+    },
+
+    response: function(res) {
+      if(res.config.url.match(API) && res.data.token) {
+        TokenService.saveUserToken(res.data.token);
+      }
+
+      return res;
+    }
+  
+  };
+  
+};
 angular
   .module("animeHub")
   .service('TokenService', TokenService);
