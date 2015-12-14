@@ -57,6 +57,13 @@ function usersController(User, TokenService, $window){
 
   // edit user
   self.editUser = function(user) {
+    console.log(self.userEditData)
+    console.log(user)
+    var data = {
+      username: self.userEditData.username || user.username,
+      email: self.userEditData.email || user.email,
+      picture: self.userEditData.picture || user.picture 
+    }
     User.update({id: user._id}, user, function(res) {
       console.log(res);
     });
