@@ -2,31 +2,20 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta property="og:title" content="My Page" >
+  <meta property="og:title" content="Local Page" >
 </head>
 <body>
 <h2>Fb</h2>
 
 <div id="fb-root"></div>
-<div class="fb-share-button" data-href="http://www.localhost:8000/" data-layout="button"></div>
+<div class="fb-share-button" data-href="http://localhost:8000/" data-layout="button"></div>
 
-<script>
-  window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '578822125476510',
-        xfbml      : true,
-        version    : 'v2.5'
-      });
-    };
-
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "//connect.facebook.net/en_GB/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-
-</script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=171749719851370";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 </html>
