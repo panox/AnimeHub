@@ -64,22 +64,23 @@ function usersController(User, TokenService, $window){
       username: self.userEditData.username || user.username,
       picture: self.userEditData.picture || user.picture 
     }
-    User.update({id: user._id}, data,
-      // sucess
-      function(res) {
-        console.log(res);
-        // get user login data to send
-        self.user = 
-          { email: user.local.email, 
-            password: self.userEditData.password
-          }
-        self.login();
-      }, 
-      // error handling
-      function(err) { 
-        console.log(err)
+    // get user login data to send
+    data = 
+      { email: user.local.email, 
+        password: self.userEditData.password
       }
-    );
+    User.login(data, function() {
+      User.update({id: user._id}, data,
+        // sucess
+        function(res) {
+          console.log(res);
+        }, 
+        // error handling
+        function(err) { 
+          console.log(err)
+        }
+      );
+    });
   };
 
 }
