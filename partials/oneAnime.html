@@ -23,7 +23,8 @@
       <!-- Show one comment -->
       <div ng-if="anime.selectedEdit._id !== comment._id">
         {{comment.title}} <br>
-        {{comment.content}}
+        {{comment.content}} <br>
+        User: {{comment.user.username}}
       </div>
 
       <!-- Edit From -->
