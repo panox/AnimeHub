@@ -10,10 +10,11 @@
 
   <nav>
     <a ui-sref-active="active" ui-sref="home">Anime</a>
-    <a ui-sref-active="active" ui-sref="login">Login</a>
-    <a ui-sref-active="active" ui-sref="signup">Signup</a>
-    <a href="#" ng-click="user.logout()">Logout</a>
+    <a ng-hide="user.loggedIn()" ui-sref-active="active" ui-sref="login">Login</a>
+    <a ng-hide="user.loggedIn()" ui-sref-active="active" ui-sref="signup">Signup</a>
+    <a ng-show="user.loggedIn()" href="#" ng-click="user.logout()">Logout</a>
   </nav>
+
 
   <div ui-view></div>
 
