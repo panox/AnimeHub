@@ -8,7 +8,9 @@ function animesController($stateParams, Anime, Comment, TokenService){
   var self = this;
 
   // decoded info of user
-  self.userToken = TokenService.getUser();
+  if (TokenService.getUserToken()) {
+    self.userToken = TokenService.getUser();
+  }
   // model where comment form data are saved
   self.commentModel = {};
   // model where edit form data are saved
