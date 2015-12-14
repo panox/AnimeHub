@@ -68,6 +68,12 @@ function usersController(User, TokenService, $window){
       // sucess
       function(res) {
         console.log(res);
+        // get user login data to send
+        self.user = 
+          { email: user.local.email, 
+            password: self.userEditData.password
+          }
+        self.login();
       }, 
       // error handling
       function(err) { 
