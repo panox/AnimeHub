@@ -58,6 +58,12 @@ function usersController(User, TokenService, $window){
     return !!TokenService.getUserToken();
   };
 
+  // show form 
+  self.showEditForm = function() {
+    console.log('clicked')
+    self.EditForm = true;
+  };
+
   // edit user
   self.editUser = function(user) {
     var data = {
