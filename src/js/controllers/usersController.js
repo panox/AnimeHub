@@ -72,18 +72,17 @@ function usersController(User, TokenService, $window){
     if (self.userEditData.password === "") {
       return console.log('error')
     }
-    // login method
+    // login to check if user matches
     User.login(logiData, function(res) {
-      var userToken = res.token;
-      TokenService.saveUserToken(userToken);
       User.update({id: user._id}, data,
         // sucess
         function(res) {
-          $window.location = '/';
-        }, 
-        // error handling
-        function(err) { 
-          console.log(err)
+          // change the token
+          User.login(logiData, function(res) { 
+            var userToken = res.token;
+            TokenService.saveUserToken(userToken);
+            $window.location = '/';
+          })
         }
       );
     });

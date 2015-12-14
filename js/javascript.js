@@ -6,39 +6,6 @@ angular
   });
 angular
   .module("animeHub")
-  .config(MainRouter);
-
-  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
-  function MainRouter($stateProvider, $urlRouterProvider) {
-
-    $stateProvider
-      .state('home', { 
-        url: '/',
-        templateUrl: "partials/home.html",
-        controller: 'animesController as anime'
-      })
-      .state('login', { 
-        url: '/login',
-        templateUrl: "partials/login.html"
-      })
-      .state('signup', { 
-        url: '/signup',
-        templateUrl: "partials/signup.html"
-      })
-      .state('oneAnime', { 
-        url: '/anime/:animeId',
-        templateUrl: "partials/oneAnime.html",
-        controller: 'animesController as anime'
-      })
-      .state('profile', { 
-        url: '/profile',
-        templateUrl: "partials/profile.html"
-      })
-
-    $urlRouterProvider.otherwise('/');
-  }
-angular
-  .module("animeHub")
   .controller("animesController", animesController);
 
 animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService'];
@@ -210,16 +177,64 @@ function usersController(User, TokenService, $window){
       username: self.userEditData.username || user.username,
       picture: self.userEditData.picture || user.picture 
     }
-    User.update({id: user._id}, data, 
-      function(res) {
-        console.log(res);
-      }, function(err) {
-        console.log(err)
+    // get user login data to send
+    var logiData = 
+      { email: user.local.email, 
+        password: self.userEditData.password
       }
-    );
+    if (self.userEditData.password === "") {
+      return console.log('error')
+    }
+    // login to check if user matches
+    User.login(logiData, function(res) {
+      User.update({id: user._id}, data,
+        // sucess
+        function(res) {
+          // change the token
+          User.login(logiData, function(res) { 
+            var userToken = res.token;
+            TokenService.saveUserToken(userToken);
+            $window.location = '/';
+          })
+        }
+      );
+    });
   };
 
 }
+angular
+  .module("animeHub")
+  .config(MainRouter);
+
+  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
+  function MainRouter($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('home', { 
+        url: '/',
+        templateUrl: "partials/home.html",
+        controller: 'animesController as anime'
+      })
+      .state('login', { 
+        url: '/login',
+        templateUrl: "partials/login.html"
+      })
+      .state('signup', { 
+        url: '/signup',
+        templateUrl: "partials/signup.html"
+      })
+      .state('oneAnime', { 
+        url: '/anime/:animeId',
+        templateUrl: "partials/oneAnime.html",
+        controller: 'animesController as anime'
+      })
+      .state('profile', { 
+        url: '/profile',
+        templateUrl: "partials/profile.html"
+      })
+
+    $urlRouterProvider.otherwise('/');
+  }
 angular
   .module("animeHub")
   .factory('Anime', Anime);
