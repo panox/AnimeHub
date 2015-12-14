@@ -25,4 +25,4 @@ function AuthInterceptor(API, TokenService) {
   
   };
   
-};
+}
