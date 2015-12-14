@@ -194,7 +194,11 @@ angular
         url: '/anime/:animeId',
         templateUrl: "partials/oneAnime.html",
         controller: 'animesController as anime'
-      });
+      })
+      .state('profile', { 
+        url: '/profile',
+        templateUrl: "partials/profile.html"
+      })
 
     $urlRouterProvider.otherwise('/');
   }
