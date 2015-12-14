@@ -34,8 +34,8 @@
         <input type="submit" value="Submit">
       </form>
 
+      <!-- Check if user id === comment.user -->
       <div ng-if="anime.userToken._id === comment.user._id">
-        <!-- Check if user id === comment.user -->
         <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)">  
           Edit
         </button>
