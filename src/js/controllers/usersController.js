@@ -64,7 +64,7 @@ function usersController(User, TokenService, $window){
       email: self.userEditData.email || user.email,
       picture: self.userEditData.picture || user.picture 
     }
-    User.update({id: user._id}, user, function(res) {
+    User.update({id: user._id}, data, function(res) {
       console.log(res);
     });
   };
