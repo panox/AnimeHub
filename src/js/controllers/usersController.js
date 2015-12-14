@@ -60,8 +60,12 @@ function usersController(User, TokenService, $window){
 
   // show form 
   self.showEditForm = function() {
-    console.log('clicked')
-    self.EditForm = true;
+    if (!self.EditForm) {
+      self.EditForm = true;
+    }
+    else if (self.EditForm) {
+      self.EditForm = false;
+    }
   };
 
   // edit user
