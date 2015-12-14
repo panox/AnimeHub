@@ -64,10 +64,13 @@ function usersController(User, TokenService, $window){
       username: self.userEditData.username || user.username,
       picture: self.userEditData.picture || user.picture 
     }
-    User.update({id: user._id}, data, 
+    User.update({id: user._id}, data,
+      // sucess
       function(res) {
         console.log(res);
-      }, function(err) {
+      }, 
+      // error handling
+      function(err) { 
         console.log(err)
       }
     );
