@@ -46,4 +46,4 @@ function usersController(User, TokenService){
     return !!TokenService.getUserToken();
   };
 
-}
+};
