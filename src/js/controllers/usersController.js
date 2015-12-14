@@ -40,4 +40,10 @@ function usersController(User, TokenService){
   self.logout = function() {
     TokenService.removeUserToken();
   };
+
+  // user is logged in
+  self.loggedIn = function() {
+    return !!TokenService.getUserToken();
+  };
+
 }
