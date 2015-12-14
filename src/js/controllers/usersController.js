@@ -8,6 +8,12 @@ function usersController(User, TokenService, $window){
   // object saved as self
   var self = this;
 
+  // decoded info of user
+  self.userToken = {};
+  if (TokenService.getUserToken()) {
+    self.userToken = TokenService.getUser();
+  }
+
   // method to login
   self.login = function() {
     User.login(
@@ -17,7 +23,7 @@ function usersController(User, TokenService, $window){
         TokenService.saveUserToken(userToken);
         self.loginMessage = res.message;
         self.user = {};
-        $window.location = '/'
+        $window.location = '/';
       }, function(err) {
         self.loginMessage = err.data.message;
       }
@@ -31,7 +37,7 @@ function usersController(User, TokenService, $window){
       function(res) {
         self.signupMessage = res.message;
         self.user = {};
-        $window.location = '/'
+        $window.location = '/';
       }, function(err) {
         self.signupMessage = err.data.message;
       }
@@ -41,7 +47,7 @@ function usersController(User, TokenService, $window){
   // method to logout
   self.logout = function() {
     TokenService.removeUserToken();
-    $window.location = '/'
+    $window.location = '/';
   };
 
   // user is logged in
