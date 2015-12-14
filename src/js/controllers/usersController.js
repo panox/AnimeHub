@@ -17,6 +17,7 @@ function usersController(User, TokenService, $window){
         TokenService.saveUserToken(userToken);
         self.loginMessage = res.message;
         self.user = {};
+        $window.location = '/'
       }, function(err) {
         self.loginMessage = err.data.message;
       }
@@ -30,6 +31,7 @@ function usersController(User, TokenService, $window){
       function(res) {
         self.signupMessage = res.message;
         self.user = {};
+        $window.location = '/'
       }, function(err) {
         self.signupMessage = err.data.message;
       }
@@ -39,6 +41,7 @@ function usersController(User, TokenService, $window){
   // method to logout
   self.logout = function() {
     TokenService.removeUserToken();
+    $window.location = '/'
   };
 
   // user is logged in
