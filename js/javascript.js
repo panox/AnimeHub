@@ -30,43 +30,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
 }
 angular
   .module("animeHub")
-  .factory('Anime', Anime);
-
-Anime.$inject = ['$resource', 'API'];
-
-function Anime($resource, API) {
-  return $resource(API + 'anime/:id', null, {
-    'query': { method:'get', url: API + 'animes' }
-  });
-}
-angular
-  .module("animeHub")
-  .factory('Comment', Comment);
-
-Comment.$inject = ['$resource', 'API'];
-function Comment($resource, API) {
-
-  return $resource(API + 'comment/:id', null, {
-    'update': { method:'PUT', url: API + 'comment/:id' },
-    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
-  });
-  
-}
-angular
-  .module("animeHub")
-  .factory('User', User);
-
-User.$inject = ['$resource', 'API'];
-function User($resource, API) {
-
-  return $resource(API + 'users/:id', null, {
-    'login':{method: "POST", url: API + 'login'},
-    'signup':{method: "POST", url: API + 'signup'}
-  });
-  
-}
-angular
-  .module("animeHub")
   .controller("animesController", animesController);
 
 animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService'];
@@ -218,6 +181,43 @@ function usersController(User, TokenService){
   };
 
 };
+angular
+  .module("animeHub")
+  .factory('Anime', Anime);
+
+Anime.$inject = ['$resource', 'API'];
+
+function Anime($resource, API) {
+  return $resource(API + 'anime/:id', null, {
+    'query': { method:'get', url: API + 'animes' }
+  });
+}
+angular
+  .module("animeHub")
+  .factory('Comment', Comment);
+
+Comment.$inject = ['$resource', 'API'];
+function Comment($resource, API) {
+
+  return $resource(API + 'comment/:id', null, {
+    'update': { method:'PUT', url: API + 'comment/:id' },
+    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
+  });
+  
+}
+angular
+  .module("animeHub")
+  .factory('User', User);
+
+User.$inject = ['$resource', 'API'];
+function User($resource, API) {
+
+  return $resource(API + 'users/:id', null, {
+    'login':{method: "POST", url: API + 'login'},
+    'signup':{method: "POST", url: API + 'signup'}
+  });
+  
+}
 angular
   .module("animeHub")
   .service('TokenService', TokenService);
