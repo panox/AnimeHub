@@ -81,10 +81,12 @@ function animesController($stateParams, Anime, Comment, TokenService){
       { animeId: animeId }, self.commentModel, 
       // success
       function(res) {
+        console.log(res)
         var newComment = {
           _id: res.comment._id,
           title: res.comment.title, 
-          content: res.comment.content
+          content: res.comment.content,
+          user: { _id : res.comment.user, username: self.userToken.username}
         };
         self.selectedAnime.comments.push(newComment);
         self.commentModel = {};
