@@ -8,6 +8,7 @@ function animesController($stateParams, Anime, Comment, TokenService){
   var self = this;
 
   // decoded info of user
+  self.userToken = {};
   if (TokenService.getUserToken()) {
     self.userToken = TokenService.getUser();
   }
