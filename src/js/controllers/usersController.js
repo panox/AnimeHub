@@ -60,11 +60,8 @@ function usersController(User, TokenService, $window){
 
   // edit user
   self.editUser = function(user) {
-    console.log(self.userEditData)
-    console.log(user)
     var data = {
       username: self.userEditData.username || user.username,
-      local: { email: self.userEditData.email || user.local.email},
       picture: self.userEditData.picture || user.picture 
     }
     User.update({id: user._id}, data, 

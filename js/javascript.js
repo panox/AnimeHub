@@ -6,6 +6,39 @@ angular
   });
 angular
   .module("animeHub")
+  .config(MainRouter);
+
+  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
+  function MainRouter($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('home', { 
+        url: '/',
+        templateUrl: "partials/home.html",
+        controller: 'animesController as anime'
+      })
+      .state('login', { 
+        url: '/login',
+        templateUrl: "partials/login.html"
+      })
+      .state('signup', { 
+        url: '/signup',
+        templateUrl: "partials/signup.html"
+      })
+      .state('oneAnime', { 
+        url: '/anime/:animeId',
+        templateUrl: "partials/oneAnime.html",
+        controller: 'animesController as anime'
+      })
+      .state('profile', { 
+        url: '/profile',
+        templateUrl: "partials/profile.html"
+      })
+
+    $urlRouterProvider.otherwise('/');
+  }
+angular
+  .module("animeHub")
   .controller("animesController", animesController);
 
 animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService'];
@@ -121,6 +154,9 @@ function usersController(User, TokenService, $window){
   // object saved as self
   var self = this;
 
+  // ediform model
+  self.userEditData = {};
+
   // decoded info of user
   self.userToken = {};
   if (TokenService.getUserToken()) {
@@ -168,40 +204,22 @@ function usersController(User, TokenService, $window){
     return !!TokenService.getUserToken();
   };
 
+  // edit user
+  self.editUser = function(user) {
+    var data = {
+      username: self.userEditData.username || user.username,
+      picture: self.userEditData.picture || user.picture 
+    }
+    User.update({id: user._id}, data, 
+      function(res) {
+        console.log(res);
+      }, function(err) {
+        console.log(err)
+      }
+    );
+  };
+
 }
-angular
-  .module("animeHub")
-  .config(MainRouter);
-
-  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
-  function MainRouter($stateProvider, $urlRouterProvider) {
-
-    $stateProvider
-      .state('home', { 
-        url: '/',
-        templateUrl: "partials/home.html",
-        controller: 'animesController as anime'
-      })
-      .state('login', { 
-        url: '/login',
-        templateUrl: "partials/login.html"
-      })
-      .state('signup', { 
-        url: '/signup',
-        templateUrl: "partials/signup.html"
-      })
-      .state('oneAnime', { 
-        url: '/anime/:animeId',
-        templateUrl: "partials/oneAnime.html",
-        controller: 'animesController as anime'
-      })
-      .state('profile', { 
-        url: '/profile',
-        templateUrl: "partials/profile.html"
-      })
-
-    $urlRouterProvider.otherwise('/');
-  }
 angular
   .module("animeHub")
   .factory('Anime', Anime);
@@ -235,7 +253,8 @@ function User($resource, API) {
 
   return $resource(API + 'users/:id', null, {
     'login':{method: "POST", url: API + 'login'},
-    'signup':{method: "POST", url: API + 'signup'}
+    'signup':{method: "POST", url: API + 'signup'},
+    'update': { method:'PUT'}
   });
   
 }

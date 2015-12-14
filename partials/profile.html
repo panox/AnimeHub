@@ -7,7 +7,6 @@
 <!-- Edit From -->
 <form ng-submit="user.editUser(user.userToken)">
   <input name="username" ng-value="user.userToken.username" ng-model="user.userEditData.username">
-  <input name="email" ng-value="user.userToken.local.email" ng-model="user.userEditData.email">
   <input name="picture" ng-value="user.userToken.picture" ng-model="user.userEditData.picture">
   <input type="submit" value="Submit">
 </form>
