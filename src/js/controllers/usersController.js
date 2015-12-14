@@ -8,6 +8,9 @@ function usersController(User, TokenService, $window){
   // object saved as self
   var self = this;
 
+  // ediform model
+  self.userEditData = {};
+
   // decoded info of user
   self.userToken = {};
   if (TokenService.getUserToken()) {
@@ -61,12 +64,16 @@ function usersController(User, TokenService, $window){
     console.log(user)
     var data = {
       username: self.userEditData.username || user.username,
-      email: self.userEditData.email || user.email,
+      local: { email: self.userEditData.email || user.local.email},
       picture: self.userEditData.picture || user.picture 
     }
-    User.update({id: user._id}, data, function(res) {
-      console.log(res);
-    });
+    User.update({id: user._id}, data, 
+      function(res) {
+        console.log(res);
+      }, function(err) {
+        console.log(err)
+      }
+    );
   };
 
 }
