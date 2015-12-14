@@ -55,4 +55,11 @@ function usersController(User, TokenService, $window){
     return !!TokenService.getUserToken();
   };
 
+  // edit user
+  self.editUser = function() {
+    User.update({id: }, user, function(res) {
+      console.log(res);
+    });
+  };
+
 }
