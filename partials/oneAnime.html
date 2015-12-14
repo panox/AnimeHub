@@ -32,12 +32,14 @@
         <input name="content" ng-value="anime.selectedEdit.content" ng-model="anime.commentEditModel.content">
         <input type="submit" value="Submit">
       </form>
-      
-      <!-- Check if user id === comment.user -->
-      <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)">  
-        Edit
-      </button>
-      <button ng-click="anime.removeComment(comment)">Delete</button>
+
+      <div ng-if="anime.userToken._id === comment.user">
+        <!-- Check if user id === comment.user -->
+        <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)">  
+          Edit
+        </button>
+        <button ng-click="anime.removeComment(comment)">Delete</button>
+      </div>
 
     </li>
   </ul> 
