@@ -127,7 +127,7 @@ function usersController(User, TokenService, $window, ROOT, $state){
           User.login(logiData, function(res) { 
             var userToken = res.token;
             TokenService.saveUserToken(userToken);
-            goToRoot();
+            $window.location = ROOT;
           });
         }
       );
