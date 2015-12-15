@@ -5,8 +5,34 @@
   <script type="text/javascript" src="./js/vendor.min.js"></script>
   <script type="text/javascript" src="./js/javascript.js"></script>
   <script type="text/javascript" src="./js/facebook.js"></script>
+  <!-- stripe -->
+  <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 </head>
 <body ng-controller="usersController as user">
+
+  <div id="stripe-form">
+    <form action="/plans/browserling_developer" method="POST" id="payment-form">
+      <div class="form-row">
+        <div class="cc-text">Card Number</div>
+        <input type="text" size="30" autocomplete="off" class="card-number"/>
+      </div>
+      <div class="form-row">
+        <div class="cc-text">CVC</div>
+        <input type="text" size="4" autocomplete="off" class="card-cvc"/>
+      </div>
+      <div class="form-row">
+        <div class="cc-text">Expiration (MM/YYYY)</div>
+        <input type="text" size="2" class="card-expiry-month"/>
+        <span> / </span>
+        <input type="text" size="4" class="card-expiry-year"/>
+      </div>
+      <input type="hidden" name="amount" value="2000" id="cc-amount">
+      <button type="submit" class="submit-button">Submit Payment</button>
+    </form>
+  </div>
+  <div id="error" class="hidden"></div>
+  <div id="success" class="hidden">Thanks for signing up at Browserling!</div>
+
   <!-- Fb Init -->
   <div id="fb-root"></div>
 
