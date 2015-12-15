@@ -222,14 +222,10 @@ function usersController(User, TokenService, $window, ROOT, $state){
     return !!TokenService.getUserToken();
   };
 
-  // show form 
-  self.showEditForm = function() {
-    if (!self.EditForm) {
-      self.EditForm = true;
-    }
-    else if (self.EditForm) {
-      self.EditForm = false;
-    }
+  // show profile edit form 
+  self.profileEditForm = true;
+  self.profileEditFormToggle = function() {
+    self.profileEditForm = self.profileEditForm === false ? true: false;
   };
 
   // edit user
