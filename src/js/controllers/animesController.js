@@ -39,7 +39,16 @@ function animesController($stateParams, Anime, Comment, TokenService){
 
   // shere one anime
   self.share = function(anime) {
-    console.log(anime)
+    FB.ui(
+      {
+        method: 'feed',
+        name: 'One Punch Man',
+        link: 'http://136b3b35.ngrok.com/#/anime/21087',
+        picture: 'http://anilist.co/img/dir/anime/reg/21087-Du1v8UgbGITB.jpg',
+        caption: 'my amazing website',
+        description: 'The manga revolves around the titular super hero who has trained so hard that his hair has fallen out, and who can overcome any enemy with one punch. However, because he is so strong, he has become bored and frustrated with winning all his battles so easily.',
+        message: 'yoyoyo'
+      });
   };
 
   // ---- COMMENTS -----
