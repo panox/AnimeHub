@@ -17,6 +17,11 @@ function usersController(User, TokenService, $window, ROOT){
     self.userToken = TokenService.getUser();
   }
 
+  // payment method
+  self.pay = function() {
+    console.log('pay')
+  };
+
   // method to login
   self.login = function() {
     User.login(
