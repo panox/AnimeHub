@@ -53,6 +53,9 @@
     <button type="submit">Pay</button>
   </form>
 
+  <!-- Message For not Logged in User -->
+  <h3 ng-if="!user.loggedIn()">To see Inividual Pages Sign Up</h3>
+
   <div ui-view></div>
   
 </body>
