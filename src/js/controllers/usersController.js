@@ -36,10 +36,10 @@ function usersController(User, TokenService, $window, ROOT){
     } else {
       // response contains id and card, which contains additional card details
       var token = response.id;
-      // Insert the token into the form so it gets submitted to the server
-      $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-      // and submit
-      $form.get(0).submit();
+      var data = { "stripeToken": token}
+      User.pay(data, function(res) {
+        console.log('token sent to server')
+      })
     }
   };
 
