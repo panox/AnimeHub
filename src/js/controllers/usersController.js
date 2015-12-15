@@ -42,10 +42,15 @@ function usersController(User, TokenService, $window, ROOT){
       var token = response.id;
       var data = { "stripeToken": token}
       User.pay(data, function(res) {
-        console.log('token sent to server')
         $form.find('button').prop('disabled', true);
       })
     }
+  };
+
+  // toggle payment form
+  self.payForm = true;
+  self.payFormToggle = function() {
+    self.payForm = self.payForm === false ? true: false;
   };
 
   // method to login
