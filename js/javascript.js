@@ -1,48 +1,16 @@
 angular
   .module("animeHub", ['ngResource', 'angular-jwt', 'ui.router'])
   .constant('API', window.location.hostname.match('localhost') ? 'http://localhost:3000/api/' : 'https://animehub-api.herokuapp.com/api/')
+  .constant('CLIENT', 'http://5734940f.ngrok.com/#/')
   .config(function($httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
   });
 angular
   .module("animeHub")
-  .config(MainRouter);
-
-  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
-  function MainRouter($stateProvider, $urlRouterProvider) {
-
-    $stateProvider
-      .state('home', { 
-        url: '/',
-        templateUrl: "partials/home.html",
-        controller: 'animesController as anime'
-      })
-      .state('login', { 
-        url: '/login',
-        templateUrl: "partials/login.html"
-      })
-      .state('signup', { 
-        url: '/signup',
-        templateUrl: "partials/signup.html"
-      })
-      .state('oneAnime', { 
-        url: '/anime/:animeId',
-        templateUrl: "partials/oneAnime.html",
-        controller: 'animesController as anime'
-      })
-      .state('profile', { 
-        url: '/profile',
-        templateUrl: "partials/profile.html"
-      });
-
-    $urlRouterProvider.otherwise('/');
-  }
-angular
-  .module("animeHub")
   .controller("animesController", animesController);
 
-animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService'];
-function animesController($stateParams, Anime, Comment, TokenService){
+animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService', 'CLIENT'];
+function animesController($stateParams, Anime, Comment, TokenService, CLIENT){
   // object saved as self
   var self = this;
 
@@ -78,12 +46,11 @@ function animesController($stateParams, Anime, Comment, TokenService){
 
   // shere one anime
   self.share = function(anime) {
-    console.log('http://5734940f.ngrok.com/#/anime/' + anime._id);
     FB.ui(
       {
         method: 'feed',
         name: anime.title,
-        link: 'http://5734940f.ngrok.com/#/anime/' + anime._id,
+        link: CLIENT + 'anime/' + anime._id,
         picture: anime.picture,
         description: anime.description,
       });
@@ -258,6 +225,39 @@ function usersController(User, TokenService, $window){
   };
 
 }
+angular
+  .module("animeHub")
+  .config(MainRouter);
+
+  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
+  function MainRouter($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('home', { 
+        url: '/',
+        templateUrl: "partials/home.html",
+        controller: 'animesController as anime'
+      })
+      .state('login', { 
+        url: '/login',
+        templateUrl: "partials/login.html"
+      })
+      .state('signup', { 
+        url: '/signup',
+        templateUrl: "partials/signup.html"
+      })
+      .state('oneAnime', { 
+        url: '/anime/:animeId',
+        templateUrl: "partials/oneAnime.html",
+        controller: 'animesController as anime'
+      })
+      .state('profile', { 
+        url: '/profile',
+        templateUrl: "partials/profile.html"
+      });
+
+    $urlRouterProvider.otherwise('/');
+  }
 angular
   .module("animeHub")
   .factory('Anime', Anime);

@@ -2,8 +2,8 @@ angular
   .module("animeHub")
   .controller("animesController", animesController);
 
-animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService'];
-function animesController($stateParams, Anime, Comment, TokenService){
+animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService', 'CLIENT'];
+function animesController($stateParams, Anime, Comment, TokenService, CLIENT){
   // object saved as self
   var self = this;
 
@@ -39,12 +39,11 @@ function animesController($stateParams, Anime, Comment, TokenService){
 
   // shere one anime
   self.share = function(anime) {
-    console.log('http://5734940f.ngrok.com/#/anime/' + anime._id);
     FB.ui(
       {
         method: 'feed',
         name: anime.title,
-        link: 'http://5734940f.ngrok.com/#/anime/' + anime._id,
+        link: CLIENT + 'anime/' + anime._id,
         picture: anime.picture,
         description: anime.description,
       });
