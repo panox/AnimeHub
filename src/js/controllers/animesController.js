@@ -43,7 +43,7 @@ function animesController($stateParams, Anime, Comment, TokenService, CLIENT){
       {
         method: 'share',
         href: CLIENT + 'anime/' + anime._id,
-        name: anime.title,
+        title: anime.title,
         link: CLIENT + 'anime/' + anime._id,
         picture: anime.picture,
         description: anime.description,

@@ -7,6 +7,39 @@ angular
   });
 angular
   .module("animeHub")
+  .config(MainRouter);
+
+  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
+  function MainRouter($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('home', { 
+        url: '/',
+        templateUrl: "partials/home.html",
+        controller: 'animesController as anime'
+      })
+      .state('login', { 
+        url: '/login',
+        templateUrl: "partials/login.html"
+      })
+      .state('signup', { 
+        url: '/signup',
+        templateUrl: "partials/signup.html"
+      })
+      .state('oneAnime', { 
+        url: '/anime/:animeId',
+        templateUrl: "partials/oneAnime.html",
+        controller: 'animesController as anime'
+      })
+      .state('profile', { 
+        url: '/profile',
+        templateUrl: "partials/profile.html"
+      });
+
+    $urlRouterProvider.otherwise('/');
+  }
+angular
+  .module("animeHub")
   .controller("animesController", animesController);
 
 animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService', 'CLIENT'];
@@ -50,7 +83,7 @@ function animesController($stateParams, Anime, Comment, TokenService, CLIENT){
       {
         method: 'share',
         href: CLIENT + 'anime/' + anime._id,
-        name: anime.title,
+        title: anime.title,
         link: CLIENT + 'anime/' + anime._id,
         picture: anime.picture,
         description: anime.description,
@@ -226,39 +259,6 @@ function usersController(User, TokenService, $window){
   };
 
 }
-angular
-  .module("animeHub")
-  .config(MainRouter);
-
-  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
-  function MainRouter($stateProvider, $urlRouterProvider) {
-
-    $stateProvider
-      .state('home', { 
-        url: '/',
-        templateUrl: "partials/home.html",
-        controller: 'animesController as anime'
-      })
-      .state('login', { 
-        url: '/login',
-        templateUrl: "partials/login.html"
-      })
-      .state('signup', { 
-        url: '/signup',
-        templateUrl: "partials/signup.html"
-      })
-      .state('oneAnime', { 
-        url: '/anime/:animeId',
-        templateUrl: "partials/oneAnime.html",
-        controller: 'animesController as anime'
-      })
-      .state('profile', { 
-        url: '/profile',
-        templateUrl: "partials/profile.html"
-      });
-
-    $urlRouterProvider.otherwise('/');
-  }
 angular
   .module("animeHub")
   .factory('Anime', Anime);
