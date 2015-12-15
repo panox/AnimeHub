@@ -4,6 +4,8 @@
   <div> {{anime.selectedAnime.title}} </div>
   <div> Score: {{anime.selectedAnime.rating}} </div>
   <div> Episodes: {{anime.selectedAnime.episodes}} </div>
+  <!-- Facebook Share -->
+  <button ng-click="anime.share(anime.selectedAnime)">SHARE</button>
   <p> {{anime.selectedAnime.description}} </p>
 </div>
 

@@ -2,10 +2,6 @@
 <html ng-app="animeHub">
 <head>
   <meta charset="utf-8">
-  <meta property="og:url"  content="http://9eb7a139.ngrok.io/" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Your Website Title" />
-  <meta property="og:description"   content="Your description" />
   <script type="text/javascript" src="/js/vendor.min.js"></script>
   <script type="text/javascript" src="/js/javascript.js"></script>
 </head>
@@ -37,12 +33,7 @@
      <a ng-hide="user.loggedIn()" ui-sref-active="active" ui-sref="login">Login</a>
      <a ng-hide="user.loggedIn()" ui-sref-active="active" ui-sref="signup">Signup</a>
      <a ng-show="user.loggedIn()" href="#" ng-click="user.logout()">Logout</a>
-   </nav>
-
-  <div class="fb-share-button" 
-    data-href="http://9eb7a139.ngrok.io/" 
-    data-layout="button">
-  </div>
+  </nav>
 
   <div ui-view></div>
   

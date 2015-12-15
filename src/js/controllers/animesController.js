@@ -37,6 +37,19 @@ function animesController($stateParams, Anime, Comment, TokenService){
     getOne();
   }
 
+  // shere one anime
+  self.share = function(anime) {
+    console.log('http://5734940f.ngrok.com/#/anime/' + anime._id);
+    FB.ui(
+      {
+        method: 'feed',
+        name: anime.title,
+        link: 'http://5734940f.ngrok.com/#/anime/' + anime._id,
+        picture: anime.picture,
+        description: anime.description,
+      });
+  };
+
   // ---- COMMENTS -----
 
   // create comment
@@ -46,7 +59,7 @@ function animesController($stateParams, Anime, Comment, TokenService){
       { animeId: animeId }, self.commentModel, 
       // success
       function(res) {
-        console.log(res)
+        console.log(res);
         var newComment = {
           _id: res.comment._id,
           title: res.comment.title, 

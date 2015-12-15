@@ -73,14 +73,14 @@ function usersController(User, TokenService, $window){
     var data = {
       username: self.userEditData.username || user.username,
       picture: self.userEditData.picture || user.picture 
-    }
+    };
     // get user login data to send
     var logiData = 
       { email: user.local.email, 
         password: self.userEditData.password
-      }
+      };
     if (self.userEditData.password === "") {
-      return console.log('error')
+      return console.log('error');
     }
     // login to check if user matches
     User.login(logiData, function(res) {
@@ -92,7 +92,7 @@ function usersController(User, TokenService, $window){
             var userToken = res.token;
             TokenService.saveUserToken(userToken);
             $window.location = '/';
-          })
+          });
         }
       );
     });

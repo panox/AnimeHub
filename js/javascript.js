@@ -33,7 +33,7 @@ angular
       .state('profile', { 
         url: '/profile',
         templateUrl: "partials/profile.html"
-      })
+      });
 
     $urlRouterProvider.otherwise('/');
   }
@@ -76,6 +76,19 @@ function animesController($stateParams, Anime, Comment, TokenService){
     getOne();
   }
 
+  // shere one anime
+  self.share = function(anime) {
+    console.log('http://5734940f.ngrok.com/#/anime/' + anime._id);
+    FB.ui(
+      {
+        method: 'feed',
+        name: anime.title,
+        link: 'http://5734940f.ngrok.com/#/anime/' + anime._id,
+        picture: anime.picture,
+        description: anime.description,
+      });
+  };
+
   // ---- COMMENTS -----
 
   // create comment
@@ -85,7 +98,7 @@ function animesController($stateParams, Anime, Comment, TokenService){
       { animeId: animeId }, self.commentModel, 
       // success
       function(res) {
-        console.log(res)
+        console.log(res);
         var newComment = {
           _id: res.comment._id,
           title: res.comment.title, 
@@ -219,14 +232,14 @@ function usersController(User, TokenService, $window){
     var data = {
       username: self.userEditData.username || user.username,
       picture: self.userEditData.picture || user.picture 
-    }
+    };
     // get user login data to send
     var logiData = 
       { email: user.local.email, 
         password: self.userEditData.password
-      }
+      };
     if (self.userEditData.password === "") {
-      return console.log('error')
+      return console.log('error');
     }
     // login to check if user matches
     User.login(logiData, function(res) {
@@ -238,7 +251,7 @@ function usersController(User, TokenService, $window){
             var userToken = res.token;
             TokenService.saveUserToken(userToken);
             $window.location = '/';
-          })
+          });
         }
       );
     });
