@@ -1,6 +1,9 @@
 <!-- Show all anime -->
 <div ng-repeat="oneAnime in anime.all">
-  <a ui-sref="oneAnime({animeId: oneAnime._id})">
+  <a ui-sref="oneAnime({animeId: oneAnime._id})" ng-if="user.loggedIn()">
+    <img ng-src="{{oneAnime.picture}}" class="img-responsive">
+  </a>
+  <a ng-if="!user.loggedIn()">
     <img ng-src="{{oneAnime.picture}}" class="img-responsive">
   </a>
   <div> {{oneAnime.title}} </div>
