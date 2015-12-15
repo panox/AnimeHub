@@ -2,8 +2,8 @@ angular
   .module("animeHub")
   .controller("usersController", usersController);
 
-usersController.$inject = ['User', 'TokenService', '$window'];
-function usersController(User, TokenService, $window){
+usersController.$inject = ['User', 'TokenService', '$window', 'ROOT'];
+function usersController(User, TokenService, $window, ROOT){
 
   // object saved as self
   var self = this;
@@ -26,7 +26,7 @@ function usersController(User, TokenService, $window){
         TokenService.saveUserToken(userToken);
         self.loginMessage = res.message;
         self.user = {};
-        $window.location = '/';
+        $window.location = ROOT;
       }, function(err) {
         self.loginMessage = err.data.message;
       }
@@ -40,7 +40,7 @@ function usersController(User, TokenService, $window){
       function(res) {
         self.signupMessage = res.message;
         self.user = {};
-        $window.location = '/';
+        $window.location = ROOT;
       }, function(err) {
         self.signupMessage = err.data.message;
       }
@@ -50,7 +50,7 @@ function usersController(User, TokenService, $window){
   // method to logout
   self.logout = function() {
     TokenService.removeUserToken();
-    $window.location = '/';
+    $window.location = ROOT;
   };
 
   // user is logged in
