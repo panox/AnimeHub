@@ -9,6 +9,8 @@
   <p> {{anime.selectedAnime.description}} </p>
 </div>
 
+<section>
+  <h3>Comments</h3> 
   <!-- Create New Comments -->
   <form ng-submit="anime.createComment(anime.selectedAnime._id)">
     <input type="text" name="title" placeholder="Title" ng-model="anime.commentModel.title">
