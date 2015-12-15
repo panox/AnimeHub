@@ -2,6 +2,7 @@ angular
   .module("animeHub", ['ngResource', 'angular-jwt', 'ui.router'])
   .constant('API', window.location.hostname.match('localhost') ? 'http://localhost:3000/api/' : 'https://animehub-api.herokuapp.com/api/')
   .constant('CLIENT', 'http://5734940f.ngrok.com/#/')
+  .constant('ROOT', window.location.hostname.match('localhost') ? '/' : '/AnimeHub/#/')
   .config(function($httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
   });
@@ -38,6 +39,98 @@ angular
 
     $urlRouterProvider.otherwise('/');
   }
+angular
+  .module("animeHub")
+  .factory('Anime', Anime);
+
+Anime.$inject = ['$resource', 'API'];
+
+function Anime($resource, API) {
+  return $resource(API + 'anime/:id', null, {
+    'query': { method:'get', url: API + 'animes' }
+  });
+}
+angular
+  .module("animeHub")
+  .factory('Comment', Comment);
+
+Comment.$inject = ['$resource', 'API'];
+function Comment($resource, API) {
+
+  return $resource(API + 'comment/:id', null, {
+    'update': { method:'PUT', url: API + 'comment/:id' },
+    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
+  });
+  
+}
+angular
+  .module("animeHub")
+  .factory('User', User);
+
+User.$inject = ['$resource', 'API'];
+function User($resource, API) {
+
+  return $resource(API + 'users/:id', null, {
+    'login':{method: "POST", url: API + 'login'},
+    'signup':{method: "POST", url: API + 'signup'},
+    'update': { method:'PUT'}
+  });
+  
+}
+angular
+  .module("animeHub")
+  .factory('AuthInterceptor', AuthInterceptor);
+
+function AuthInterceptor(API, TokenService) {
+  return {
+
+    request: function(config) {
+      var token = TokenService.getUserToken();
+
+      if(config.url.match(API) && token) {
+        config.headers.Authorization = 'Bearer ' + token;
+      }
+
+      return config;
+    },
+
+    response: function(res) {
+      if(res.config.url.match(API) && res.data.token) {
+        TokenService.saveUserToken(res.data.token);
+      }
+
+      return res;
+    }
+  
+  };
+  
+}
+angular
+  .module("animeHub")
+  .service('TokenService', TokenService);
+
+TokenService.$inject = ['$window', 'jwtHelper'];
+function TokenService($window, jwtHelper) {
+  var self = this;
+
+  self.saveUserToken = function(token) {
+    $window.localStorage.setItem('userToken', token);
+  };
+
+  self.getUserToken = function() {
+    return $window.localStorage.getItem('userToken');
+  };
+
+  self.removeUserToken = function() {
+    $window.localStorage.removeItem('userToken');
+  };
+
+  self.getUser = function() {
+    var token = self.getUserToken();
+    return jwtHelper.decodeToken(token);
+  };
+
+}
 angular
   .module("animeHub")
   .controller("animesController", animesController);
@@ -162,8 +255,8 @@ angular
   .module("animeHub")
   .controller("usersController", usersController);
 
-usersController.$inject = ['User', 'TokenService', '$window'];
-function usersController(User, TokenService, $window){
+usersController.$inject = ['User', 'TokenService', '$window', 'ROOT'];
+function usersController(User, TokenService, $window, ROOT){
 
   // object saved as self
   var self = this;
@@ -186,7 +279,7 @@ function usersController(User, TokenService, $window){
         TokenService.saveUserToken(userToken);
         self.loginMessage = res.message;
         self.user = {};
-        $window.location = '/';
+        $window.location = ROOT;
       }, function(err) {
         self.loginMessage = err.data.message;
       }
@@ -200,7 +293,7 @@ function usersController(User, TokenService, $window){
       function(res) {
         self.signupMessage = res.message;
         self.user = {};
-        $window.location = '/';
+        $window.location = ROOT;
       }, function(err) {
         self.signupMessage = err.data.message;
       }
@@ -210,7 +303,7 @@ function usersController(User, TokenService, $window){
   // method to logout
   self.logout = function() {
     TokenService.removeUserToken();
-    $window.location = '/';
+    $window.location = ROOT;
   };
 
   // user is logged in
@@ -256,98 +349,6 @@ function usersController(User, TokenService, $window){
         }
       );
     });
-  };
-
-}
-angular
-  .module("animeHub")
-  .factory('Anime', Anime);
-
-Anime.$inject = ['$resource', 'API'];
-
-function Anime($resource, API) {
-  return $resource(API + 'anime/:id', null, {
-    'query': { method:'get', url: API + 'animes' }
-  });
-}
-angular
-  .module("animeHub")
-  .factory('Comment', Comment);
-
-Comment.$inject = ['$resource', 'API'];
-function Comment($resource, API) {
-
-  return $resource(API + 'comment/:id', null, {
-    'update': { method:'PUT', url: API + 'comment/:id' },
-    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
-  });
-  
-}
-angular
-  .module("animeHub")
-  .factory('User', User);
-
-User.$inject = ['$resource', 'API'];
-function User($resource, API) {
-
-  return $resource(API + 'users/:id', null, {
-    'login':{method: "POST", url: API + 'login'},
-    'signup':{method: "POST", url: API + 'signup'},
-    'update': { method:'PUT'}
-  });
-  
-}
-angular
-  .module("animeHub")
-  .factory('AuthInterceptor', AuthInterceptor);
-
-function AuthInterceptor(API, TokenService) {
-  return {
-
-    request: function(config) {
-      var token = TokenService.getUserToken();
-
-      if(config.url.match(API) && token) {
-        config.headers.Authorization = 'Bearer ' + token;
-      }
-
-      return config;
-    },
-
-    response: function(res) {
-      if(res.config.url.match(API) && res.data.token) {
-        TokenService.saveUserToken(res.data.token);
-      }
-
-      return res;
-    }
-  
-  };
-  
-}
-angular
-  .module("animeHub")
-  .service('TokenService', TokenService);
-
-TokenService.$inject = ['$window', 'jwtHelper'];
-function TokenService($window, jwtHelper) {
-  var self = this;
-
-  self.saveUserToken = function(token) {
-    $window.localStorage.setItem('userToken', token);
-  };
-
-  self.getUserToken = function() {
-    return $window.localStorage.getItem('userToken');
-  };
-
-  self.removeUserToken = function() {
-    $window.localStorage.removeItem('userToken');
-  };
-
-  self.getUser = function() {
-    var token = self.getUserToken();
-    return jwtHelper.decodeToken(token);
   };
 
 }
