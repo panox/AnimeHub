@@ -37,6 +37,11 @@ function animesController($stateParams, Anime, Comment, TokenService){
     getOne();
   }
 
+  // shere one anime
+  self.share = function(anime) {
+    console.log(anime)
+  };
+
   // ---- COMMENTS -----
 
   // create comment
