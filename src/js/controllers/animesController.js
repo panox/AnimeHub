@@ -39,6 +39,7 @@ function animesController($stateParams, Anime, Comment, TokenService){
 
   // shere one anime
   self.share = function(anime) {
+    console.log('http://5734940f.ngrok.com/#/anime/' + anime._id);
     FB.ui(
       {
         method: 'feed',
@@ -58,7 +59,7 @@ function animesController($stateParams, Anime, Comment, TokenService){
       { animeId: animeId }, self.commentModel, 
       // success
       function(res) {
-        console.log(res)
+        console.log(res);
         var newComment = {
           _id: res.comment._id,
           title: res.comment.title, 

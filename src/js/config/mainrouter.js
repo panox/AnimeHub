@@ -27,7 +27,7 @@ angular
       .state('profile', { 
         url: '/profile',
         templateUrl: "partials/profile.html"
-      })
+      });
 
     $urlRouterProvider.otherwise('/');
   }
