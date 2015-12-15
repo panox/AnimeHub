@@ -8,7 +8,8 @@ function User($resource, API) {
   return $resource(API + 'users/:id', null, {
     'login':{method: "POST", url: API + 'login'},
     'signup':{method: "POST", url: API + 'signup'},
-    'update': { method:'PUT'}
+    'update': { method:'PUT'},
+    'pay': {method: 'POST', url: API + 'users/pay'}
   });
   
 }
