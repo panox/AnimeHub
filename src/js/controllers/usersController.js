@@ -17,6 +17,11 @@ function usersController(User, TokenService, $window, ROOT){
     self.userToken = TokenService.getUser();
   }
 
+  // redirects to root of the website
+  function goToRoot() {
+    $window.location = ROOT;
+  }  
+
   // payment method
   self.pay = function() {
     var $form = $('#payment-form');
@@ -39,6 +44,7 @@ function usersController(User, TokenService, $window, ROOT){
       var data = { "stripeToken": token}
       User.pay(data, function(res) {
         console.log('token sent to server')
+        $form.find('button').prop('disabled', true);
       })
     }
   };
@@ -52,7 +58,7 @@ function usersController(User, TokenService, $window, ROOT){
         TokenService.saveUserToken(userToken);
         self.loginMessage = res.message;
         self.user = {};
-        $window.location = ROOT;
+        goToRoot()
       }, function(err) {
         self.loginMessage = err.data.message;
       }
@@ -66,7 +72,7 @@ function usersController(User, TokenService, $window, ROOT){
       function(res) {
         self.signupMessage = res.message;
         self.user = {};
-        $window.location = ROOT;
+        goToRoot()
       }, function(err) {
         self.signupMessage = err.data.message;
       }
@@ -76,7 +82,7 @@ function usersController(User, TokenService, $window, ROOT){
   // method to logout
   self.logout = function() {
     TokenService.removeUserToken();
-    $window.location = ROOT;
+    goToRoot()
   };
 
   // user is logged in
@@ -117,7 +123,7 @@ function usersController(User, TokenService, $window, ROOT){
           User.login(logiData, function(res) { 
             var userToken = res.token;
             TokenService.saveUserToken(userToken);
-            $window.location = '/';
+            goToRoot()
           });
         }
       );
