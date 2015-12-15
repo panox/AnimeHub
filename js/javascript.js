@@ -1,6 +1,6 @@
 angular
   .module("animeHub", ['ngResource', 'angular-jwt', 'ui.router'])
-  .constant('API', window.location.hostname.match('localhost') ? 'http://localhost:3000/api/' : 'http://animehub.herokuapp.com/api/')
+  .constant('API', window.location.hostname.match('localhost') ? 'http://localhost:3000/api/' : 'https://animehub-api.herokuapp.com/api/')
   .config(function($httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
   });
@@ -37,44 +37,6 @@ angular
 
     $urlRouterProvider.otherwise('/');
   }
-angular
-  .module("animeHub")
-  .factory('Anime', Anime);
-
-Anime.$inject = ['$resource', 'API'];
-
-function Anime($resource, API) {
-  return $resource(API + 'anime/:id', null, {
-    'query': { method:'get', url: API + 'animes' }
-  });
-}
-angular
-  .module("animeHub")
-  .factory('Comment', Comment);
-
-Comment.$inject = ['$resource', 'API'];
-function Comment($resource, API) {
-
-  return $resource(API + 'comment/:id', null, {
-    'update': { method:'PUT', url: API + 'comment/:id' },
-    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
-  });
-  
-}
-angular
-  .module("animeHub")
-  .factory('User', User);
-
-User.$inject = ['$resource', 'API'];
-function User($resource, API) {
-
-  return $resource(API + 'users/:id', null, {
-    'login':{method: "POST", url: API + 'login'},
-    'signup':{method: "POST", url: API + 'signup'},
-    'update': { method:'PUT'}
-  });
-  
-}
 angular
   .module("animeHub")
   .controller("animesController", animesController);
@@ -282,6 +244,44 @@ function usersController(User, TokenService, $window){
     });
   };
 
+}
+angular
+  .module("animeHub")
+  .factory('Anime', Anime);
+
+Anime.$inject = ['$resource', 'API'];
+
+function Anime($resource, API) {
+  return $resource(API + 'anime/:id', null, {
+    'query': { method:'get', url: API + 'animes' }
+  });
+}
+angular
+  .module("animeHub")
+  .factory('Comment', Comment);
+
+Comment.$inject = ['$resource', 'API'];
+function Comment($resource, API) {
+
+  return $resource(API + 'comment/:id', null, {
+    'update': { method:'PUT', url: API + 'comment/:id' },
+    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
+  });
+  
+}
+angular
+  .module("animeHub")
+  .factory('User', User);
+
+User.$inject = ['$resource', 'API'];
+function User($resource, API) {
+
+  return $resource(API + 'users/:id', null, {
+    'login':{method: "POST", url: API + 'login'},
+    'signup':{method: "POST", url: API + 'signup'},
+    'update': { method:'PUT'}
+  });
+  
 }
 angular
   .module("animeHub")
