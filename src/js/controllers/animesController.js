@@ -43,7 +43,7 @@ function animesController($stateParams, Anime, Comment, TokenService){
       {
         method: 'feed',
         name: anime.title,
-        link: 'http://136b3b35.ngrok.com/#/anime/' + anime._id,
+        link: 'http://5734940f.ngrok.com/#/anime/' + anime._id,
         picture: anime.picture,
         description: anime.description,
       });
