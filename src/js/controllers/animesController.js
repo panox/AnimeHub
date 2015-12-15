@@ -41,7 +41,8 @@ function animesController($stateParams, Anime, Comment, TokenService, CLIENT){
   self.share = function(anime) {
     FB.ui(
       {
-        method: 'feed',
+        method: 'share',
+        href: CLIENT + 'anime/' + anime._id,
         name: anime.title,
         link: CLIENT + 'anime/' + anime._id,
         picture: anime.picture,
