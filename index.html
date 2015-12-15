@@ -12,26 +12,16 @@
   </script>
 </head>
 <body ng-controller="usersController as user">
-<!-- <form action="http://localhost:3000/api/users/pay" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_hH5Fe3p7JU0r88Hklk3Y6J7m"
-    data-amount="1000"
-    data-name="AnimeHub"
-    data-description="($10.00)"
-    data-locale="auto">
-  </script>
-</form> -->
 
   <!-- Fb Init -->
   <div id="fb-root"></div>
 
   <nav>
      <a ui-sref-active="active" ui-sref="home">Anime</a>
-     <a ng-show="user.loggedIn()" ui-sref-active="active" ui-sref="profile">Profile</a>
-     <a ng-hide="user.loggedIn()" ui-sref-active="active" ui-sref="login">Login</a>
-     <a ng-hide="user.loggedIn()" ui-sref-active="active" ui-sref="signup">Signup</a>
-     <a ng-show="user.loggedIn()" href="#" ng-click="user.logout()">Logout</a>
+     <a ng-if="user.loggedIn()" ui-sref-active="active" ui-sref="profile">Profile</a>
+     <a ng-if="!user.loggedIn()" ui-sref-active="active" ui-sref="login">Login</a>
+     <a ng-if="!user.loggedIn()" ui-sref-active="active" ui-sref="signup">Signup</a>
+     <a ng-if="user.loggedIn()" href="#" ng-click="user.logout()">Logout</a>
   </nav>
 
   <button ng-click="user.payFormToggle()">Make a Donation</button>
