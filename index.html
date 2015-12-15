@@ -5,19 +5,10 @@
   <script type="text/javascript" src="./js/vendor.min.js"></script>
   <script type="text/javascript" src="./js/javascript.js"></script>
   <script type="text/javascript" src="./js/facebook.js"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 </head>
 <body ng-controller="usersController as user">
 
-<!-- <form action="http://localhost:3000/api/users/pay" method="POST">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_hH5Fe3p7JU0r88Hklk3Y6J7m"
-    data-amount="1000"
-    data-name="AnimeHub"
-    data-description="($10.00)"
-    data-locale="auto">
-  </script>
-</form> -->
 <form id="payment-form" ng-submit="user.pay()">
   <span class="payment-errors"></span>
 
@@ -40,12 +31,22 @@
       <span>Expiration (MM/YYYY)</span>
       <input type="text" size="2" data-stripe="exp-month"/>
     </label>
-    <span> / </span>
     <input type="text" size="4" data-stripe="exp-year"/>
   </div>
 
   <button type="submit">Submit Payment</button>
 </form>
+
+<!-- <form action="http://localhost:3000/api/users/pay" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_hH5Fe3p7JU0r88Hklk3Y6J7m"
+    data-amount="1000"
+    data-name="AnimeHub"
+    data-description="($10.00)"
+    data-locale="auto">
+  </script>
+</form> -->
 
   <!-- Fb Init -->
   <div id="fb-root"></div>
