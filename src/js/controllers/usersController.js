@@ -2,8 +2,8 @@ angular
   .module("animeHub")
   .controller("usersController", usersController);
 
-usersController.$inject = ['User', 'TokenService', '$window', 'ROOT'];
-function usersController(User, TokenService, $window, ROOT){
+usersController.$inject = ['User', 'TokenService', '$window', 'ROOT', '$state'];
+function usersController(User, TokenService, $window, ROOT, $state){
 
   // object saved as self
   var self = this;
@@ -19,7 +19,7 @@ function usersController(User, TokenService, $window, ROOT){
 
   // redirects to root of the website
   function goToRoot() {
-    $window.location = ROOT;
+    $state.go('home');
   }  
 
   // payment method
