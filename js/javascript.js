@@ -1,5 +1,5 @@
 angular
-  .module("animeHub", ['ngResource', 'angular-jwt', 'ui.router'])
+  .module("animeHub", ['ngResource', 'angular-jwt', 'ui.router', 'updateMeta'])
   .constant('API', window.location.hostname.match('localhost') ? 'http://localhost:3000/api/' : 'https://animehub-api.herokuapp.com/api/')
   .config(function($httpProvider) {
     $httpProvider.interceptors.push('AuthInterceptor');
@@ -74,6 +74,60 @@ function User($resource, API) {
     'update': { method:'PUT'}
   });
   
+}
+angular
+  .module("animeHub")
+  .factory('AuthInterceptor', AuthInterceptor);
+
+function AuthInterceptor(API, TokenService) {
+  return {
+
+    request: function(config) {
+      var token = TokenService.getUserToken();
+
+      if(config.url.match(API) && token) {
+        config.headers.Authorization = 'Bearer ' + token;
+      }
+
+      return config;
+    },
+
+    response: function(res) {
+      if(res.config.url.match(API) && res.data.token) {
+        TokenService.saveUserToken(res.data.token);
+      }
+
+      return res;
+    }
+  
+  };
+  
+}
+angular
+  .module("animeHub")
+  .service('TokenService', TokenService);
+
+TokenService.$inject = ['$window', 'jwtHelper'];
+function TokenService($window, jwtHelper) {
+  var self = this;
+
+  self.saveUserToken = function(token) {
+    $window.localStorage.setItem('userToken', token);
+  };
+
+  self.getUserToken = function() {
+    return $window.localStorage.getItem('userToken');
+  };
+
+  self.removeUserToken = function() {
+    $window.localStorage.removeItem('userToken');
+  };
+
+  self.getUser = function() {
+    var token = self.getUserToken();
+    return jwtHelper.decodeToken(token);
+  };
+
 }
 angular
   .module("animeHub")
@@ -280,60 +334,6 @@ function usersController(User, TokenService, $window){
         }
       );
     });
-  };
-
-}
-angular
-  .module("animeHub")
-  .factory('AuthInterceptor', AuthInterceptor);
-
-function AuthInterceptor(API, TokenService) {
-  return {
-
-    request: function(config) {
-      var token = TokenService.getUserToken();
-
-      if(config.url.match(API) && token) {
-        config.headers.Authorization = 'Bearer ' + token;
-      }
-
-      return config;
-    },
-
-    response: function(res) {
-      if(res.config.url.match(API) && res.data.token) {
-        TokenService.saveUserToken(res.data.token);
-      }
-
-      return res;
-    }
-  
-  };
-  
-}
-angular
-  .module("animeHub")
-  .service('TokenService', TokenService);
-
-TokenService.$inject = ['$window', 'jwtHelper'];
-function TokenService($window, jwtHelper) {
-  var self = this;
-
-  self.saveUserToken = function(token) {
-    $window.localStorage.setItem('userToken', token);
-  };
-
-  self.getUserToken = function() {
-    return $window.localStorage.getItem('userToken');
-  };
-
-  self.removeUserToken = function() {
-    $window.localStorage.removeItem('userToken');
-  };
-
-  self.getUser = function() {
-    var token = self.getUserToken();
-    return jwtHelper.decodeToken(token);
   };
 
 }
