@@ -40,12 +40,12 @@ function usersController(User, TokenService, $window, ROOT){
     } else {
       // response contains id and card, which contains additional card details
       var token = response.id;
-      var data = { "stripeToken": token}
+      var data = { "stripeToken": token};
       User.pay(data, function(res) {
         $form.find('button').prop('disabled', true);
-      })
+      });
     }
-  };
+  }
 
   // toggle payment form
   self.payForm = true;
@@ -62,7 +62,7 @@ function usersController(User, TokenService, $window, ROOT){
         TokenService.saveUserToken(userToken);
         self.loginMessage = res.message;
         self.user = {};
-        goToRoot()
+        goToRoot();
       }, function(err) {
         self.loginMessage = err.data.message;
       }
@@ -76,7 +76,7 @@ function usersController(User, TokenService, $window, ROOT){
       function(res) {
         self.signupMessage = res.message;
         self.user = {};
-        goToRoot()
+        goToRoot();
       }, function(err) {
         self.signupMessage = err.data.message;
       }
@@ -86,7 +86,7 @@ function usersController(User, TokenService, $window, ROOT){
   // method to logout
   self.logout = function() {
     TokenService.removeUserToken();
-    goToRoot()
+    goToRoot();
   };
 
   // user is logged in
@@ -127,7 +127,7 @@ function usersController(User, TokenService, $window, ROOT){
           User.login(logiData, function(res) { 
             var userToken = res.token;
             TokenService.saveUserToken(userToken);
-            goToRoot()
+            goToRoot();
           });
         }
       );

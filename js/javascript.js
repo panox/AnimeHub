@@ -8,6 +8,39 @@ angular
   });
 angular
   .module("animeHub")
+  .config(MainRouter);
+
+  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
+  function MainRouter($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('home', { 
+        url: '/',
+        templateUrl: "partials/home.html",
+        controller: 'animesController as anime'
+      })
+      .state('login', { 
+        url: '/login',
+        templateUrl: "partials/login.html"
+      })
+      .state('signup', { 
+        url: '/signup',
+        templateUrl: "partials/signup.html"
+      })
+      .state('oneAnime', { 
+        url: '/anime/:animeId',
+        templateUrl: "partials/oneAnime.html",
+        controller: 'animesController as anime'
+      })
+      .state('profile', { 
+        url: '/profile',
+        templateUrl: "partials/profile.html"
+      });
+
+    $urlRouterProvider.otherwise('/');
+  }
+angular
+  .module("animeHub")
   .controller("animesController", animesController);
 
 animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService', 'CLIENT'];
@@ -168,12 +201,17 @@ function usersController(User, TokenService, $window, ROOT){
     } else {
       // response contains id and card, which contains additional card details
       var token = response.id;
-      var data = { "stripeToken": token}
+      var data = { "stripeToken": token};
       User.pay(data, function(res) {
-        console.log('token sent to server')
         $form.find('button').prop('disabled', true);
-      })
+      });
     }
+  }
+
+  // toggle payment form
+  self.payForm = true;
+  self.payFormToggle = function() {
+    self.payForm = self.payForm === false ? true: false;
   };
 
   // method to login
@@ -185,7 +223,7 @@ function usersController(User, TokenService, $window, ROOT){
         TokenService.saveUserToken(userToken);
         self.loginMessage = res.message;
         self.user = {};
-        goToRoot()
+        goToRoot();
       }, function(err) {
         self.loginMessage = err.data.message;
       }
@@ -199,7 +237,7 @@ function usersController(User, TokenService, $window, ROOT){
       function(res) {
         self.signupMessage = res.message;
         self.user = {};
-        goToRoot()
+        goToRoot();
       }, function(err) {
         self.signupMessage = err.data.message;
       }
@@ -209,7 +247,7 @@ function usersController(User, TokenService, $window, ROOT){
   // method to logout
   self.logout = function() {
     TokenService.removeUserToken();
-    goToRoot()
+    goToRoot();
   };
 
   // user is logged in
@@ -250,7 +288,7 @@ function usersController(User, TokenService, $window, ROOT){
           User.login(logiData, function(res) { 
             var userToken = res.token;
             TokenService.saveUserToken(userToken);
-            goToRoot()
+            goToRoot();
           });
         }
       );
@@ -258,39 +296,6 @@ function usersController(User, TokenService, $window, ROOT){
   };
 
 }
-angular
-  .module("animeHub")
-  .config(MainRouter);
-
-  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
-  function MainRouter($stateProvider, $urlRouterProvider) {
-
-    $stateProvider
-      .state('home', { 
-        url: '/',
-        templateUrl: "partials/home.html",
-        controller: 'animesController as anime'
-      })
-      .state('login', { 
-        url: '/login',
-        templateUrl: "partials/login.html"
-      })
-      .state('signup', { 
-        url: '/signup',
-        templateUrl: "partials/signup.html"
-      })
-      .state('oneAnime', { 
-        url: '/anime/:animeId',
-        templateUrl: "partials/oneAnime.html",
-        controller: 'animesController as anime'
-      })
-      .state('profile', { 
-        url: '/profile',
-        templateUrl: "partials/profile.html"
-      });
-
-    $urlRouterProvider.otherwise('/');
-  }
 angular
   .module("animeHub")
   .factory('Anime', Anime);
