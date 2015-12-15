@@ -8,12 +8,13 @@
 </head>
 <body ng-controller="usersController as user">
 
-<form ng-submit="user.pay()">
+<form action="http://localhost:3000/api/users/pay" method="POST">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_hH5Fe3p7JU0r88Hklk3Y6J7m"
     data-amount="1000"
     data-name="AnimeHub"
+    data-description="($10.00)"
     data-locale="auto">
   </script>
 </form>
