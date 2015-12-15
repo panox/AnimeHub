@@ -33,7 +33,6 @@ function usersController(User, TokenService, $window, ROOT){
   // function with reponse from stripe create token
   function stripeResponseHandler(status, response) {
     var $form = $('#payment-form');
-
     if (response.error) {
       // Show the errors on the form
       $form.find('.payment-errors').text(response.error.message);

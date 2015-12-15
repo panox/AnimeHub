@@ -8,39 +8,6 @@ angular
   });
 angular
   .module("animeHub")
-  .config(MainRouter);
-
-  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
-  function MainRouter($stateProvider, $urlRouterProvider) {
-
-    $stateProvider
-      .state('home', { 
-        url: '/',
-        templateUrl: "partials/home.html",
-        controller: 'animesController as anime'
-      })
-      .state('login', { 
-        url: '/login',
-        templateUrl: "partials/login.html"
-      })
-      .state('signup', { 
-        url: '/signup',
-        templateUrl: "partials/signup.html"
-      })
-      .state('oneAnime', { 
-        url: '/anime/:animeId',
-        templateUrl: "partials/oneAnime.html",
-        controller: 'animesController as anime'
-      })
-      .state('profile', { 
-        url: '/profile',
-        templateUrl: "partials/profile.html"
-      });
-
-    $urlRouterProvider.otherwise('/');
-  }
-angular
-  .module("animeHub")
   .controller("animesController", animesController);
 
 animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService', 'CLIENT'];
@@ -178,6 +145,37 @@ function usersController(User, TokenService, $window, ROOT){
     self.userToken = TokenService.getUser();
   }
 
+  // redirects to root of the website
+  function goToRoot() {
+    $window.location = ROOT;
+  }  
+
+  // payment method
+  self.pay = function() {
+    var $form = $('#payment-form');
+    // disable button after first click
+    $form.find('button').prop('disabled', true);
+    Stripe.card.createToken($form, stripeResponseHandler);
+  };
+
+  // function with reponse from stripe create token
+  function stripeResponseHandler(status, response) {
+    var $form = $('#payment-form');
+    if (response.error) {
+      // Show the errors on the form
+      $form.find('.payment-errors').text(response.error.message);
+      $form.find('button').prop('disabled', false);
+    } else {
+      // response contains id and card, which contains additional card details
+      var token = response.id;
+      var data = { "stripeToken": token}
+      User.pay(data, function(res) {
+        console.log('token sent to server')
+        $form.find('button').prop('disabled', true);
+      })
+    }
+  };
+
   // method to login
   self.login = function() {
     User.login(
@@ -187,7 +185,7 @@ function usersController(User, TokenService, $window, ROOT){
         TokenService.saveUserToken(userToken);
         self.loginMessage = res.message;
         self.user = {};
-        $window.location = ROOT;
+        goToRoot()
       }, function(err) {
         self.loginMessage = err.data.message;
       }
@@ -201,7 +199,7 @@ function usersController(User, TokenService, $window, ROOT){
       function(res) {
         self.signupMessage = res.message;
         self.user = {};
-        $window.location = ROOT;
+        goToRoot()
       }, function(err) {
         self.signupMessage = err.data.message;
       }
@@ -211,7 +209,7 @@ function usersController(User, TokenService, $window, ROOT){
   // method to logout
   self.logout = function() {
     TokenService.removeUserToken();
-    $window.location = ROOT;
+    goToRoot()
   };
 
   // user is logged in
@@ -252,7 +250,7 @@ function usersController(User, TokenService, $window, ROOT){
           User.login(logiData, function(res) { 
             var userToken = res.token;
             TokenService.saveUserToken(userToken);
-            $window.location = '/';
+            goToRoot()
           });
         }
       );
@@ -260,6 +258,39 @@ function usersController(User, TokenService, $window, ROOT){
   };
 
 }
+angular
+  .module("animeHub")
+  .config(MainRouter);
+
+  MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
+  function MainRouter($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('home', { 
+        url: '/',
+        templateUrl: "partials/home.html",
+        controller: 'animesController as anime'
+      })
+      .state('login', { 
+        url: '/login',
+        templateUrl: "partials/login.html"
+      })
+      .state('signup', { 
+        url: '/signup',
+        templateUrl: "partials/signup.html"
+      })
+      .state('oneAnime', { 
+        url: '/anime/:animeId',
+        templateUrl: "partials/oneAnime.html",
+        controller: 'animesController as anime'
+      })
+      .state('profile', { 
+        url: '/profile',
+        templateUrl: "partials/profile.html"
+      });
+
+    $urlRouterProvider.otherwise('/');
+  }
 angular
   .module("animeHub")
   .factory('Anime', Anime);
