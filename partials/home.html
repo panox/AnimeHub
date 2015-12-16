@@ -6,10 +6,7 @@
          ng-if="anime.all[i] != null">
       <div class="anime">
         <p class="score"> Score: {{anime.all[i].rating}} </p>
-        <a ui-sref="oneAnime({animeId: anime.all[i]._id})" ng-if="user.loggedIn()">
-          <img ng-src="{{anime.all[i].picture}}" class="img-responsive">
-        </a>
-        <a ng-if="!user.loggedIn()">
+        <a ui-sref="oneAnime({animeId: anime.all[i]._id})">
           <img ng-src="{{anime.all[i].picture}}" class="img-responsive">
         </a>
         <p class="title"> {{anime.all[i].title}} </p>
