@@ -5,6 +5,15 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var jshint = require('gulp-jshint');
+var sass = require('gulp-sass');
+
+// sass
+gulp.task('sass', function() {
+  return gulp.src('src/scss/style.scss')
+    .pipe(sass({ outputStyle: 'expanded' }))
+    .pipe(rename('style.css'))
+    .pipe(gulp.dest('css'));
+});
 
 // jshint
 gulp.task('jshint', function() {
