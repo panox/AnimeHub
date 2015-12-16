@@ -53,7 +53,59 @@ nav {
   }
 }
 
-// Login Form 
+// Profile Page
+@import url(http://fonts.googleapis.com/css?family=Raleway|Varela+Round|Coda);
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+.user-profile {
+  margin: auto;
+  width: 25em; 
+  height: 11em;
+  background: #fff;
+  border-radius: .3em;
+
+  .username {
+    margin: auto;
+    margin-top: -4.40em;
+    margin-left: 5.80em;
+    color: #658585;
+    font-size: 1.53em;
+    font-family: "Coda", sans-serif;
+    font-weight: bold;
+  }
+
+  .bio {
+    margin: auto;
+    display: inline-block;
+    margin-left: 10.43em;
+    color: #e76043; 
+    font-size: .87em;
+    font-family: "varela round", sans-serif;
+  }
+
+  >.description {
+    margin: auto;
+    margin-top: 1.35em;
+    margin-right: 4.43em;
+    width: 14em;
+    color: #c0c5c5; 
+    font-size: .87em;
+    font-family: "varela round", sans-serif;
+  }
+
+  >img.avatar {
+    padding: .7em;
+    margin-left: .3em;
+    margin-top: .3em;
+    height: 6.23em;
+    width: 6.23em;
+    border-radius: 18em;
+  }
+
+}
+
+
+// Login, Signup Form 
 .formBox{
   width: 350px;
   height: 480px;
