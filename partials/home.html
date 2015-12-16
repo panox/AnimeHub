@@ -5,6 +5,7 @@
          ng-repeat="i in [$index, $index + 1, $index + 2, $index + 3]" 
          ng-if="anime.all[i] != null">
       <div class="anime">
+        <p class="score"> Score: {{anime.all[i].rating}} </p>
         <a ui-sref="oneAnime({animeId: anime.all[i]._id})" ng-if="user.loggedIn()">
           <img ng-src="{{anime.all[i].picture}}" class="img-responsive">
         </a>
