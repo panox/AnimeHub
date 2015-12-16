@@ -261,7 +261,6 @@ function usersController(User, TokenService, $window, ROOT, $state, $timeout){
         var userToken = res.token;
         TokenService.saveUserToken(userToken);
         self.loginMessage = res.message;
-        self.user = {};
         goToRoot();
       }, function(err) {
         self.loginMessage = err.data.message;
@@ -275,7 +274,6 @@ function usersController(User, TokenService, $window, ROOT, $state, $timeout){
       self.user, 
       function(res) {
         self.signupMessage = res.message;
-        self.user = {};
         goToRoot();
       }, function(err) {
         self.signupMessage = err.data.message;

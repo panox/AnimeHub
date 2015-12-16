@@ -47,3 +47,53 @@ nav button {
 .anime .score {
   font-size: 19px;
 }
+
+.formBox {
+  width: 350px;
+  height: 480px;
+  margin: auto;
+  text-align: center;
+  list-style: none;
+  padding: 47px 20px 10px 10px;
+  background: #CCCCCC;
+  border-radius: 0px;
+  border: 1px solid #fff;
+  border-radius: 0px;
+  -webkit-box-shadow: 5px 5px 10px 1px #303030;
+  box-shadow: -1px -1px 15px 1px #303030;
+}
+
+.formBox input {
+  background: #fff;
+  disply: block;
+  width: 300px;
+  padding: 20px;
+  margin: 10px;
+  font: 15px Georgia;
+  border: 0px;
+  border-bottom: 1px solid #c9c9c9;
+  border-radius: 0px;
+}
+
+.formBox [type=submit] {
+  margin-top: 25px;
+  width: 250px;
+  padding: 12px;
+  border: 0px;
+  background: #446CB3;
+  border-radius: 0px;
+  color: white;
+  font-weight: 400;
+  font: 18px Georgia;
+  font-weight: bold;
+  border: 2px solid #446CB3;
+}
+
+.formBox [type=submit]:hover {
+  border-color: #446CB3;
+  cursor: pointer;
+}
+
+.formBox form a {
+  text-decoration: none;
+}
