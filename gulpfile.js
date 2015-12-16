@@ -55,6 +55,7 @@ gulp.task('default', function() {
   livereload.listen();
   gulp.watch(['src/**/*','src/**/**/*', 'index.html', 'partials/*'], 
     [ 
+      'sass',
       'jshint',
       'js-concat',
       function() { livereload.reload('index.html'); }
