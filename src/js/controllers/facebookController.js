@@ -2,12 +2,13 @@ angular
   .module("animeHub")
   .controller("facebookController", facebookController);
 
-  facebookController.$inject = ['$window'];
+facebookController.$inject = ['$window'];
 function facebookController($window){
   var self = this;
 
-  self.init = function() {
-    window.fbAsyncInit = function() {
+  function fbInit() {
+
+    $window.fbAsyncInit = function() {
       FB.init({
         appId      : '1664979030450339',
         xfbml      : true,
@@ -22,7 +23,9 @@ function facebookController($window){
        js.src = "//connect.facebook.net/en_US/sdk.js";
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
+
   };
 
-  self.init;
+  fbInit();
+
 }

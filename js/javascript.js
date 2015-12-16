@@ -162,6 +162,37 @@ function animesController($stateParams, Anime, Comment, TokenService, CLIENT){
 }
 angular
   .module("animeHub")
+  .controller("facebookController", facebookController);
+
+facebookController.$inject = ['$window'];
+function facebookController($window){
+  var self = this;
+
+  function fbInit() {
+
+    $window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1664979030450339',
+        xfbml      : true,
+        version    : 'v2.5'
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+
+  };
+
+  fbInit();
+
+}
+angular
+  .module("animeHub")
   .controller("usersController", usersController);
 
 usersController.$inject = ['User', 'TokenService', '$window', 'ROOT', '$state'];
@@ -207,7 +238,8 @@ function usersController(User, TokenService, $window, ROOT, $state){
       var token = response.id;
       var data = { "stripeToken": token, amount: self.pay.amount};
       User.pay(data, function(res) {
-        $form.find('button').prop('disabled', true);
+        self.pay.amount = "";
+        self.payForm = true;
       });
     }
   }
