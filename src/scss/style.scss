@@ -60,13 +60,13 @@ nav {
   margin: auto;
   text-align: center;
   list-style: none;
-  padding: 10px 20px 10px 10px;
-  background:inherit;
+  padding: 47px 20px 10px 10px;
+  background:#C0C0C0;
   border-radius: 0px;
   border: 1px solid #fff;
   border-radius: 0px;
   -webkit-box-shadow: 5px 5px 10px 1px #303030;
-box-shadow: -1px -1px 15px 1px #303030;
+  box-shadow: -1px -1px 15px 1px #303030;
 
   input { 
     background: #fff;
@@ -92,13 +92,11 @@ box-shadow: -1px -1px 15px 1px #303030;
     font: 18px Georgia;
     font-weight: bold;
     border: 2px solid #446CB3;
-  }
-    
-  [type=submit]:hover {
-    background-color: #fff;
-    color: #446CB3;
-    border-color: #446CB3;
-    cursor: pointer;
+
+    &:hover {
+      border-color: #446CB3;
+      cursor: pointer;
+    }
   }
 
   form a {
