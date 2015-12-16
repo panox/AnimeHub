@@ -45,7 +45,8 @@ function usersController(User, TokenService, $window, ROOT, $state){
       var token = response.id;
       var data = { "stripeToken": token, amount: self.pay.amount};
       User.pay(data, function(res) {
-        $form.find('button').prop('disabled', true);
+        self.pay.amount = "";
+        self.payForm = true;
       });
     }
   }
