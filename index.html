@@ -28,21 +28,28 @@
   <form id="payment-form" ng-submit="user.pay()" ng-if="!user.payForm">
     <span class="payment-errors"></span>
 
-    <div class="form-row">
+    <div>
+      <label>
+        <span>Amount</span>
+        <input type="text" size="20" />
+      </label>
+    </div>
+
+    <div>
       <label>
         <span>Card Number</span>
         <input type="text" size="20" data-stripe="number"/>
       </label>
     </div>
 
-    <div class="form-row">
+    <div>
       <label>
         <span>CVC</span>
         <input type="text" size="4" data-stripe="cvc"/>
       </label>
     </div>
 
-    <div class="form-row">
+    <div>
       <label>
         <span>Expiration (MM/YYYY)</span>
         <input type="text" size="2" data-stripe="exp-month"/>
