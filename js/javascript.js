@@ -181,8 +181,11 @@ function usersController(User, TokenService, $window, ROOT, $state){
 
   // redirects to root of the website
   function goToRoot() {
+    $window.location = ROOT;
+  }
+  function goToHomeState() {
     $state.go('home');
-  }  
+  }
 
   // payment method
   self.pay = function() {
@@ -248,7 +251,7 @@ function usersController(User, TokenService, $window, ROOT, $state){
   // method to logout
   self.logout = function() {
     TokenService.removeUserToken();
-    goToRoot();
+    goToHomeState();
   };
 
   // user is logged in
@@ -289,7 +292,7 @@ function usersController(User, TokenService, $window, ROOT, $state){
           User.login(logiData, function(res) { 
             var userToken = res.token;
             TokenService.saveUserToken(userToken);
-            $window.location = ROOT;
+            goToRoot();
           });
         }
       );

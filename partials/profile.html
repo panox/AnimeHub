@@ -2,7 +2,7 @@
 <h2>Profile</h2>
 {{user.userToken.username}} <br>
 {{user.userToken.local.email}} <br>
-<img ng-src="{{user.userToken.picture}}" alt="user-image">
+<img ng-if="user.userToken.picture" ng-src="{{user.userToken.picture}}" alt="user-image">
 <button ng-click="user.showEditForm()">Edit</button>
 <!-- Edit From -->
 <form ng-if="user.EditForm" ng-submit="user.editUser(user.userToken)">
