@@ -6,6 +6,8 @@
 // Backgroun Color
 body {
   background: #2d353d;
+  font-family: helvetica neue, sans-serif;
+  background: url('http://dir.agosto.nl/dump/profile.png');
 }
 
 // Navbar
@@ -191,21 +193,6 @@ section.profile {
   }
 
 }
-
-
-// Basics
-
-// body {
-//   display: flex;
-//   margin: 0;
-//   padding: 20px;
-//   min-height: 100%;
-//   box-sizing: border-box;
-//   align-items: center;
-//   justify-content: center;
-//   font-family: helvetica neue, sans-serif;
-//   background: url('http://dir.agosto.nl/dump/profile.png');
-// }
 
 
 // Login, Signup Form 
