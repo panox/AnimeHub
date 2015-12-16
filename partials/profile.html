@@ -1,36 +1,21 @@
 <!-- Show User -->
-<div class="user-profile">
-  <img class="avatar" ng-if="user.userToken.picture" ng-src="{{user.userToken.picture}}" alt="user-image">
-  <div class="username">{{user.userToken.username}}</div>
-  <div class="bio">
-    {{user.userToken.local.email}}
-  </div>
-
-  <button ng-click="user.showEditForm()">Edit</button>
-
-</div>
-
 <main>
   <section class="profile">
     <div class="profile-header"><img src="http://dir.agosto.nl/dump/sara-header.png" alt=""/></div>
-    <div class="profile-content"><img src="http://dir.agosto.nl/dump/Sara.jpg" alt="Portret of Sara Robertson"/>
-      <h1>Sara Robertson</h1>
-      <p>Graphic designer</p>
-      <button type="button">Follow</button>
+    <div class="profile-content"><img class="avatar" ng-if="user.userToken.picture" ng-src="{{user.userToken.picture}}" alt="user-image">
+      <h1>{{user.userToken.username}}</h1>
+      <p>{{user.userToken.local.email}}</p>
+      <button ng-click="user.showEditForm()">Edit</button>
     </div>
-    <ul aria-label="Statistics">
-      <li>383<span>followers</span></li>
-      <li>239<span>following</span></li>
-    </ul>
   </section>
 </main>
 
 
 <!-- Edit From -->
 <form ng-if="user.EditForm" ng-submit="user.editUser(user.userToken)" class="formBox">
-  <input name="username" ng-value="user.userToken.username" ng-model="user.userEditData.username">
-  <input name="picture" ng-value="user.userToken.picture" ng-model="user.userEditData.picture">
-  <input type="password" name="password" ng-model="user.userEditData.password">
+  <input name="username" placeholder="username" ng-value="user.userToken.username" ng-model="user.userEditData.username">
+  <input name="picture" placeholder="picture" ng-value="user.userToken.picture" ng-model="user.userEditData.picture">
+  <input type="password" placeholder="password" name="password" ng-model="user.userEditData.password">
   <input type="submit" value="Submit">
 </form>
 
