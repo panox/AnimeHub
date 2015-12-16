@@ -43,6 +43,12 @@
           <li><a ng-if="!user.loggedIn()" ui-sref-active="active" ui-sref="signup">Signup</a></li>
           <li><a ng-if="user.loggedIn()" href="#" ng-click="user.logout()">Logout</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <!-- Message For not Logged in User -->
+          <h4 ng-if="!user.loggedIn()">Sign Up or Login For Individual Pages</h4>
+          <!-- Message For Logged in User -->
+          <h4 ng-if="user.loggedIn()">Hello {{user.userToken.username}} !</h4>
+        </ul>
       </div>
     </div>
   </nav>
@@ -82,11 +88,6 @@
 
     <button type="submit">Pay</button>
   </form>
-
-  <!-- Message For not Logged in User -->
-  <h3 ng-if="!user.loggedIn()">Sign Up or Login For Individual Pages</h3>
-  <!-- Message For Logged in User -->
-  <h3 ng-if="user.loggedIn()">Hello {{user.userToken.username}} !</h3>
 
   <div ui-view></div>
   
