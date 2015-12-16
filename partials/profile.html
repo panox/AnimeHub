@@ -10,6 +10,22 @@
 
 </div>
 
+<main>
+  <section class="profile">
+    <div class="profile-header"><img src="http://dir.agosto.nl/dump/sara-header.png" alt=""/></div>
+    <div class="profile-content"><img src="http://dir.agosto.nl/dump/Sara.jpg" alt="Portret of Sara Robertson"/>
+      <h1>Sara Robertson</h1>
+      <p>Graphic designer</p>
+      <button type="button">Follow</button>
+    </div>
+    <ul aria-label="Statistics">
+      <li>383<span>followers</span></li>
+      <li>239<span>following</span></li>
+    </ul>
+  </section>
+</main>
+
+
 <!-- Edit From -->
 <form ng-if="user.EditForm" ng-submit="user.editUser(user.userToken)" class="formBox">
   <input name="username" ng-value="user.userToken.username" ng-model="user.userEditData.username">
