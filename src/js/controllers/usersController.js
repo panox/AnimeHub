@@ -43,7 +43,7 @@ function usersController(User, TokenService, $window, ROOT, $state){
     } else {
       // response contains id and card, which contains additional card details
       var token = response.id;
-      var data = { "stripeToken": token};
+      var data = { "stripeToken": token, amount: self.pay.amount};
       User.pay(data, function(res) {
         $form.find('button').prop('disabled', true);
       });
