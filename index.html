@@ -58,15 +58,17 @@
       </div>
     </div>
   </nav>
-<!-- ng-if="!user.payForm" Remember to put this back in-->
-  <form class="form-horizontal" id="payment-form" ng-submit="user.pay()"> 
+
+  <form class="form-horizontal" id="payment-form" ng-submit="user.pay()" ng-if="!user.payForm"> 
     <span class="payment-errors"></span>
+
+    {{user.payMessage}}
 
     <div class="form-group">
       <label class="col-sm-10 control-label">
         Amount
       </label>
-      <input placeholder="MM" size="4" type="text" ng-model="user.pay.amount" />
+      <input placeholder="£" size="4" type="text" ng-model="user.pay.amount" />
     </div>
 
     <div class="form-group">
