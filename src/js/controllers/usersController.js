@@ -81,7 +81,6 @@ function usersController(User, TokenService, $window, ROOT, $state, $timeout){
       self.user, 
       function(res) {
         self.signupMessage = res.message;
-        self.user = {};
         goToRoot();
       }, function(err) {
         self.signupMessage = err.data.message;
