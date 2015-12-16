@@ -42,45 +42,6 @@ angular
   }
 angular
   .module("animeHub")
-  .factory('Anime', Anime);
-
-Anime.$inject = ['$resource', 'API'];
-
-function Anime($resource, API) {
-  return $resource(API + 'anime/:id', null, {
-    'query': { method:'get', url: API + 'animes' }
-  });
-}
-angular
-  .module("animeHub")
-  .factory('Comment', Comment);
-
-Comment.$inject = ['$resource', 'API'];
-function Comment($resource, API) {
-
-  return $resource(API + 'comment/:id', null, {
-    'update': { method:'PUT', url: API + 'comment/:id' },
-    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
-  });
-  
-}
-angular
-  .module("animeHub")
-  .factory('User', User);
-
-User.$inject = ['$resource', 'API'];
-function User($resource, API) {
-
-  return $resource(API + 'users/:id', null, {
-    'login':{method: "POST", url: API + 'login'},
-    'signup':{method: "POST", url: API + 'signup'},
-    'update': { method:'PUT'},
-    'pay': {method: 'POST', url: API + 'users/pay'}
-  });
-  
-}
-angular
-  .module("animeHub")
   .controller("animesController", animesController);
 
 animesController.$inject =['$stateParams', 'Anime', 'Comment', 'TokenService', 'CLIENT'];
@@ -234,8 +195,8 @@ angular
   .module("animeHub")
   .controller("usersController", usersController);
 
-usersController.$inject = ['User', 'TokenService', '$window', 'ROOT', '$state'];
-function usersController(User, TokenService, $window, ROOT, $state){
+usersController.$inject = ['User', 'TokenService', '$window', 'ROOT', '$state', '$timeout'];
+function usersController(User, TokenService, $window, ROOT, $state, $timeout){
 
   // object saved as self
   var self = this;
@@ -277,8 +238,11 @@ function usersController(User, TokenService, $window, ROOT, $state){
       var token = response.id;
       var data = { "stripeToken": token, amount: self.pay.amount};
       User.pay(data, function(res) {
+        self.payMessage = "Donation Sent!";
         self.pay.amount = "";
-        self.payForm = true;
+        $timeout(function() {
+          self.payForm = true;
+        }, 2100);
       });
     }
   }
@@ -370,6 +334,45 @@ function usersController(User, TokenService, $window, ROOT, $state){
     });
   };
 
+}
+angular
+  .module("animeHub")
+  .factory('Anime', Anime);
+
+Anime.$inject = ['$resource', 'API'];
+
+function Anime($resource, API) {
+  return $resource(API + 'anime/:id', null, {
+    'query': { method:'get', url: API + 'animes' }
+  });
+}
+angular
+  .module("animeHub")
+  .factory('Comment', Comment);
+
+Comment.$inject = ['$resource', 'API'];
+function Comment($resource, API) {
+
+  return $resource(API + 'comment/:id', null, {
+    'update': { method:'PUT', url: API + 'comment/:id' },
+    'save': { method:'POST', url: API + 'anime/:animeId/comments'}
+  });
+  
+}
+angular
+  .module("animeHub")
+  .factory('User', User);
+
+User.$inject = ['$resource', 'API'];
+function User($resource, API) {
+
+  return $resource(API + 'users/:id', null, {
+    'login':{method: "POST", url: API + 'login'},
+    'signup':{method: "POST", url: API + 'signup'},
+    'update': { method:'PUT'},
+    'pay': {method: 'POST', url: API + 'users/pay'}
+  });
+  
 }
 angular
   .module("animeHub")

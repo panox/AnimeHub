@@ -2,8 +2,8 @@ angular
   .module("animeHub")
   .controller("usersController", usersController);
 
-usersController.$inject = ['User', 'TokenService', '$window', 'ROOT', '$state'];
-function usersController(User, TokenService, $window, ROOT, $state){
+usersController.$inject = ['User', 'TokenService', '$window', 'ROOT', '$state', '$timeout'];
+function usersController(User, TokenService, $window, ROOT, $state, $timeout){
 
   // object saved as self
   var self = this;
@@ -45,8 +45,11 @@ function usersController(User, TokenService, $window, ROOT, $state){
       var token = response.id;
       var data = { "stripeToken": token, amount: self.pay.amount};
       User.pay(data, function(res) {
+        self.payMessage = "Donation Sent!";
         self.pay.amount = "";
-        self.payForm = true;
+        $timeout(function() {
+          self.payForm = true;
+        }, 2100);
       });
     }
   }

@@ -1,3 +1,8 @@
+/* removes the outline */
+.btn:focus, .btn:active, .btn:active:focus {
+  outline: none;
+}
+
 nav {
   padding: 8px 0 0 0;
 }
@@ -13,6 +18,12 @@ nav h4 {
 
 nav button {
   margin-right: 50px;
+}
+
+.paymessage {
+  font-size: 21px;
+  font-weight: bold;
+  color: #2D63BA;
 }
 
 .anime {
