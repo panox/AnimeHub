@@ -108,8 +108,12 @@
   </form>
 
   <form class="checkout">
+    <span class="payment-errors"></span>
+    <div class="paymessage">
+      {{user.payMessage}}
+    </div>
     <p>
-      <input type="text" class="checkout-input checkout-name" placeholder="Your name" autofocus>
+      <input type="text" class="checkout-input checkout-name" placeholder="Amount £" autofocus>
       <input type="text" class="checkout-input checkout-exp" placeholder="MM">
       <input type="text" class="checkout-input checkout-exp" placeholder="YY">
     </p>
