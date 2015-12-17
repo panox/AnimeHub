@@ -28,7 +28,7 @@
 
         <input type="text" name="content" placeholder="Content" ng-model="anime.commentModel.content">
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" class="btn btn-sm btn-primary blue-submit">
       </form>
 
       <ul id="comments-list" class="comments-list" ng-if="anime.selectedAnime.comments.length > 0">
@@ -46,10 +46,10 @@
                   </h6>
                   <!-- Check if user id === comment.user -->
                   <div ng-if="anime.userToken._id === comment.user._id">
-                    <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)">  
+                    <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)" class="btn btn-sm btn-info">  
                       Edit
                     </button>
-                    <button ng-click="anime.removeComment(comment)">Delete</button>
+                    <button class="btn btn-sm btn-danger" ng-click="anime.removeComment(comment)">Delete</button>
                   </div>
                 </div>
                 <div class="comment-content">
@@ -63,7 +63,7 @@
               <form ng-if="anime.selectedEdit._id === comment._id" ng-submit="anime.editComment()">
                 <input name="title" ng-value="anime.selectedEdit.title" ng-model="anime.commentEditModel.title">
                 <input name="content" ng-value="anime.selectedEdit.content" ng-model="anime.commentEditModel.content">
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" class="btn btn-sm btn-primary blue-submit">
               </form>
 
             </div>

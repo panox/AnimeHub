@@ -111,6 +111,21 @@ nav button {
 /* =====================
     Comments
  ========================*/
+.btn-danger {
+  background-color: #CC776A;
+  border-color: #CC776A;
+}
+
+.btn-info {
+  background-color: #674B75;
+  border-color: #674B75;
+}
+
+.blue-submit {
+  background-color: #5B748C;
+  border-color: #5B748C;
+}
+
 .comments-container {
   font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
   margin: 60px auto 15px;
@@ -125,11 +140,11 @@ nav button {
   font-size: 36px;
   color: #fff;
   font-weight: 400;
+  text-align: center;
 }
 
-.comments-container h1 a {
-  font-size: 18px;
-  font-weight: 700;
+.comments-container form {
+  text-align: center;
 }
 
 .comments-list {
