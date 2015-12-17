@@ -107,7 +107,21 @@
     
   </form>
 
-  <div ui-view></div>
+  <form class="checkout">
+    <p>
+      <input type="text" class="checkout-input checkout-name" placeholder="Your name" autofocus>
+      <input type="text" class="checkout-input checkout-exp" placeholder="MM">
+      <input type="text" class="checkout-input checkout-exp" placeholder="YY">
+    </p>
+    <p>
+      <input type="text" class="checkout-input checkout-card" placeholder="4242 4242 4242 4242">
+      <input type="text" class="checkout-input checkout-cvc" placeholder="CVC">
+    </p>
+    <p>
+      <input type="submit" value="Purchase" class="checkout-btn">
+    </p>
+  </form>
+
+  <div ui-view></div> 
   
 </body>
-
