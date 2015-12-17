@@ -2,12 +2,12 @@
 <div class="row oneAnime">
   <div class="col-sm-4">
     <div class="title"> {{anime.selectedAnime.title}} </div>
-    <img ng-src="{{anime.selectedAnime.picture}}" class="img-responsive">
+    <img ng-src="{{anime.selectedAnime.picture}}" class="img-responsive image">
     <div class="score"> 
       Score: {{anime.selectedAnime.rating}} 
       <span>
         <!-- Facebook Share -->
-        <button ng-click="anime.share(anime.selectedAnime)">SHARE</button>
+        <button class="btnz facebook" ng-click="anime.share(anime.selectedAnime)">SHARE</button>
       </span>
     </div>
     <p class="description"> {{anime.selectedAnime.description}} </p>

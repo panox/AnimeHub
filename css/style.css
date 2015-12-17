@@ -54,6 +54,43 @@ nav button {
   font-size: 19px;
 }
 
+.oneAnime {
+  color: white;
+  line-height: 1.5;
+  letter-spacing: 1.2px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.oneAnime .title {
+  font-size: 19px;
+}
+
+.oneAnime .image {
+  margin: 13px auto;
+}
+
+.oneAnime .btnz {
+  padding: 4px 14px;
+  border: none;
+  text-decoration: none;
+  font-size: 15px;
+  color: #FFF;
+  outline: none;
+}
+
+.oneAnime .btnz:hover {
+  color: #efefef;
+}
+
+.oneAnime .facebook {
+  background-color: #3b5998;
+}
+
+.oneAnime .description {
+  margin-top: 13px;
+}
+
 section.profile {
   margin: 0 auto;
   position: relative;
