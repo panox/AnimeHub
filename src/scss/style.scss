@@ -1,16 +1,22 @@
-/* removes the outline */
+/* =====================
+    Removes outline
+ ========================*/
 .btn:focus, .btn:active, .btn:active:focus {
     outline: none;
 }
 
-// Backgroun Color
+/* =====================
+    Body
+ ========================*/
 body {
   background: #2d353d;
   font-family: helvetica neue, sans-serif;
   background: url('http://dir.agosto.nl/dump/profile.png');
 }
 
-// Navbar
+/* =====================
+    Navbar
+ ========================*/
 nav {
 
   padding: 8px 0 0 0;
@@ -30,14 +36,18 @@ nav {
 
 }
 
-// Payment
+/* =====================
+    Payment
+ ========================*/
 .paymessage {
   font-size: 21px;
   font-weight: bold;
   color: #2D63BA;
 }
 
-// All anime Page
+/* =====================
+    All anime Page
+ ========================*/
 .anime {
   color: white;
   line-height: 1.5;
@@ -60,7 +70,9 @@ nav {
   }
 }
 
-// One Anime Page
+/* =====================
+    One Anime Page
+ ========================*/
 .oneAnime {
   color: white;
   line-height: 1.5;
@@ -98,8 +110,220 @@ nav {
   }
 }
 
-// Profile Page
+/* =====================
+    Comments
+ ========================*/
 
+.btn-danger {
+  background-color: #CC776A;
+  border-color: #CC776A; 
+}
+.btn-info {
+  background-color: #674B75;
+  border-color: #674B75;
+}
+.blue-submit {
+  background-color: #5B748C;
+  border-color: #5B748C;
+}
+
+// Biggests Comments Container
+ .comments-container {
+  font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
+  margin: 60px auto 15px;
+  width: 768px;
+
+  ul {
+   list-style-type: none;
+  }
+
+  h1 {
+    font-size: 36px;
+    color: #fff;
+    font-weight: 400;
+    text-align: center;
+
+   }
+
+  form {
+    text-align: center;
+  }
+
+ }
+
+ .comments-list {
+  margin-top: 30px;
+  position: relative;
+
+  &:before {
+    content: '';
+    width: 2px;
+    height: 100%;
+    background: #c7cacb;
+    position: absolute;
+    left: 32px;
+    top: 0;
+  }
+
+  &:after {
+   content: '';
+   position: absolute;
+   background: #c7cacb;
+   bottom: 0;
+   left: 27px;
+   width: 7px;
+   height: 7px;
+   border: 3px solid #dee1e3;
+   -webkit-border-radius: 50%;
+   -moz-border-radius: 50%;
+   border-radius: 50%;
+  }
+
+  li {
+    margin-bottom: 15px;
+    display: block;
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+      height: 0;
+      width: 0;
+     }
+
+   }
+
+}
+
+ .comment-main-level:after {
+  content: '';
+  width: 0;
+  height: 0;
+  display: block;
+  clear: both;
+ }
+
+ /**
+  * Comment Box
+  ---------------------------*/
+  .comment-box {
+    width: 680px;
+    float: right;
+    position: relative;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+
+
+    &:before, &:after {
+      content: '';
+      height: 0;
+      width: 0;
+      position: absolute;
+      display: block;
+      border-width: 10px 12px 10px 0;
+      border-style: solid;
+      border-color: transparent #FCFCFC;
+      top: 8px;
+      left: -11px;
+    }
+
+    &:before {
+      border-width: 11px 13px 11px 0;
+      border-color: transparent rgba(0,0,0,0.05);
+      left: -12px;
+    }
+  
+    .comment-head {
+      background: #FCFCFC;
+      padding: 10px 12px;
+      border-bottom: 1px solid #E5E5E5;
+      overflow: hidden;
+      -webkit-border-radius: 4px 4px 0 0;
+      -moz-border-radius: 4px 4px 0 0;
+      border-radius: 4px 4px 0 0;
+
+      i {
+        float: right;
+        margin-left: 14px;
+        position: relative;
+        top: 2px;
+        color: #A6A6A6;
+        cursor: pointer;
+        -webkit-transition: color 0.3s ease;
+        -o-transition: color 0.3s ease;
+        transition: color 0.3s ease;
+      
+        &:hover {
+          color: #03658c;
+        }
+
+      }
+
+    }
+
+    .comment-name {
+      color: #283035;
+      font-size: 14px;
+      font-weight: 700;
+      float: left;
+      margin-right: 10px;
+
+      a {
+        color: #283035;
+      }
+
+      span {
+       float: left;
+       color: #999;
+       font-size: 13px;
+       position: relative;
+       top: 1px;
+     }
+
+   }
+
+   .comment-content {
+     background: #FFF;
+     padding: 12px;
+     font-size: 15px;
+     color: #595959;
+     -webkit-border-radius: 0 0 4px 4px;
+     -moz-border-radius: 0 0 4px 4px;
+     border-radius: 0 0 4px 4px;
+
+     span {
+      text-decoration: underline;
+     }
+
+   }
+
+   .comment-name.by-author, .comment-name.by-author a {
+    color: #03658c;
+  }
+
+} 
+
+  // Responsive
+ @media only screen and (max-width: 766px) {
+  .comments-container {
+    width: 480px;
+  }
+
+  .comments-list .comment-box {
+    width: 390px;
+  }
+
+  .reply-list .comment-box {
+    width: 320px;
+  }
+ }
+
+
+/* =====================
+    Profile Page
+ ========================*/
 section.profile {
   margin: 0 auto;
   position: relative;
@@ -230,8 +454,9 @@ section.profile {
 
 }
 
-
-// Login, Signup Form 
+/* =====================
+    Login, Signup Form 
+ ========================*/
 .formBox{
   width: 350px;
   height: 480px;

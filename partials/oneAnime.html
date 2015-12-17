@@ -1,6 +1,6 @@
 <!-- Selected Anime -->
 <div class="row oneAnime">
-  <div class="col-sm-4">
+  <div class="col-sm-4 col-sm-offset-4">
     <div class="title"> {{anime.selectedAnime.title}} </div>
     <img ng-src="{{anime.selectedAnime.picture}}" class="img-responsive image">
     <div class="score"> 
@@ -15,44 +15,62 @@
 </div>
 
 <section>
-  <h3>Comments</h3> 
-  <!-- Create New Comments -->
-  <p ng-if="!user.loggedIn()">Log in/Signup to add comments</p>
-  <form ng-submit="anime.createComment(anime.selectedAnime._id)" ng-if="user.loggedIn()">
-    <input type="text" name="title" placeholder="Title" ng-model="anime.commentModel.title">
-
-    <input type="text" name="content" placeholder="Content" ng-model="anime.commentModel.content">
-
-    <input type="submit" value="Submit">
-  </form>
 
   <!-- Show all comments -->
-  <ul>
-    <li ng-repeat="comment in anime.selectedAnime.comments">
 
-      <!-- Show one comment -->
-      <div ng-if="anime.selectedEdit._id !== comment._id">
-        {{comment.title}} <br>
-        {{comment.content}} <br>
-        User: {{comment.user.username}}
-      </div>
+  <!-- Contenedor Principal -->
+    <div class="comments-container">
+      <h1>Comments</h1>
 
-      <!-- Edit From -->
-      <form ng-if="anime.selectedEdit._id === comment._id" ng-submit="anime.editComment()">
-        <input name="title" ng-value="anime.selectedEdit.title" ng-model="anime.commentEditModel.title">
-        <input name="content" ng-value="anime.selectedEdit.content" ng-model="anime.commentEditModel.content">
-        <input type="submit" value="Submit">
+      <!-- Create New Comments -->
+      <form ng-submit="anime.createComment(anime.selectedAnime._id)">
+        <input type="text" name="title" placeholder="Title" ng-model="anime.commentModel.title">
+
+        <input type="text" name="content" placeholder="Content" ng-model="anime.commentModel.content">
+
+        <input type="submit" value="Submit" class="btn btn-sm btn-primary blue-submit">
       </form>
 
-      <!-- Check if user id === comment.user -->
-      <div ng-if="anime.userToken._id === comment.user._id">
-        <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)">  
-          Edit
-        </button>
-        <button ng-click="anime.removeComment(comment)">Delete</button>
-      </div>
+      <ul id="comments-list" class="comments-list" ng-if="anime.selectedAnime.comments.length > 0">
+        <li ng-repeat="comment in anime.selectedAnime.comments">
+          <div class="comment-main-level">
+            <!-- Comment Box -->
+            <div class="comment-box">
+            
+              <!-- Checks to see if comment is going to be edited -->
+              <div ng-if="anime.selectedEdit._id !== comment._id">
 
-    </li>
-  </ul> 
+                <div class="comment-head">
+                  <h6 class="comment-name by-author">
+                    {{comment.user.username}}
+                  </h6>
+                  <!-- Check if user id === comment.user -->
+                  <div ng-if="anime.userToken._id === comment.user._id">
+                    <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)" class="btn btn-sm btn-info">  
+                      Edit
+                    </button>
+                    <button class="btn btn-sm btn-danger" ng-click="anime.removeComment(comment)">Delete</button>
+                  </div>
+                </div>
+                <div class="comment-content">
+                  <span>{{comment.title}}</span>
+                  <p>{{comment.content}}</p>
+                </div>
+
+              </div>
+
+
+              <form ng-if="anime.selectedEdit._id === comment._id" ng-submit="anime.editComment()">
+                <input name="title" ng-value="anime.selectedEdit.title" ng-model="anime.commentEditModel.title">
+                <input name="content" ng-value="anime.selectedEdit.content" ng-model="anime.commentEditModel.content">
+                <input type="submit" value="Submit" class="btn btn-sm btn-primary blue-submit">
+              </form>
+
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
 </section>
 
