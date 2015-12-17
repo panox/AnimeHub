@@ -23,3 +23,18 @@ A person who watches new anime when a new season comes out.
 * A user can share an anime on his Facebook wall.
 * A user can message an anime to his Facebook friends.
 * A user can make a donation to the site.
+
+### Mockups
+
+### Database Diagram 
+
+### Blog Diagram 
+In the creating this website a blog was kept with refernces to usefull code for future reference. [Blog](http://panox-animehub.blogspot.co.uk/)
+
+###Aims for the future
+
+* Upcoming Season
+* Chat Room
+* Users Profiles
+* User Anime List on Profile
+
