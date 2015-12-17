@@ -49,6 +49,7 @@ function usersController(User, TokenService, $window, ROOT, $state, $timeout){
         self.pay.amount = "";
         $timeout(function() {
           self.payForm = true;
+          self.payMessage = "";
         }, 2100);
       });
     }
