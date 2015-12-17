@@ -15,17 +15,6 @@
 </div>
 
 <section>
-  <h3>Comments</h3> 
-  <!-- Create New Comments -->
-  <form ng-submit="anime.createComment(anime.selectedAnime._id)">
-    <label>Title</label>
-    <input type="text" name="title" placeholder="Title" ng-model="anime.commentModel.title">
-
-    <label>Content</label>
-    <input type="text" name="content" placeholder="Content" ng-model="anime.commentModel.content">
-
-    <input type="submit" value="Submit">
-  </form>
 
   <!-- Show all comments -->
 
@@ -33,13 +22,22 @@
     <div class="comments-container">
       <h1>Comments</h1>
 
+      <!-- Create New Comments -->
+      <form ng-submit="anime.createComment(anime.selectedAnime._id)">
+        <input type="text" name="title" placeholder="Title" ng-model="anime.commentModel.title">
+
+        <input type="text" name="content" placeholder="Content" ng-model="anime.commentModel.content">
+
+        <input type="submit" value="Submit">
+      </form>
+
       <ul id="comments-list" class="comments-list">
         <li ng-repeat="comment in anime.selectedAnime.comments">
           <div class="comment-main-level">
             <!-- Comment Box -->
             <div class="comment-box">
             
-
+              <!-- Checks to see if comment is going to be edited -->
               <div ng-if="anime.selectedEdit._id !== comment._id">
 
                 <div class="comment-head">
@@ -75,35 +73,4 @@
     </div>
 
 </section>
-
-
-<ul>
-  <li ng-repeat="comment in anime.selectedAnime.comments">
-
-    <!-- Show one comment -->
-<!--     <div ng-if="anime.selectedEdit._id !== comment._id">
-      {{comment.title}} <br>
-      <p>{{comment.content}}</p>
-      <div>
-        User: {{comment.user.username}}
-      </div>
-    </div> -->
-
-    <!-- Edit From -->
-<!--     <form ng-if="anime.selectedEdit._id === comment._id" ng-submit="anime.editComment()">
-      <input name="title" ng-value="anime.selectedEdit.title" ng-model="anime.commentEditModel.title">
-      <input name="content" ng-value="anime.selectedEdit.content" ng-model="anime.commentEditModel.content">
-      <input type="submit" value="Submit">
-    </form> -->
-
-    <!-- Check if user id === comment.user -->
-<!--     <div ng-if="anime.userToken._id === comment.user._id">
-      <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)">  
-        Edit
-      </button>
-      <button ng-click="anime.removeComment(comment)">Delete</button>
-    </div>
- -->
-  </li>
-</ul> 
 

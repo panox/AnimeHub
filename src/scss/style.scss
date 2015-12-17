@@ -287,6 +287,11 @@ nav {
      -webkit-border-radius: 0 0 4px 4px;
      -moz-border-radius: 0 0 4px 4px;
      border-radius: 0 0 4px 4px;
+
+     span {
+      text-decoration: underline;
+     }
+
    }
 
    .comment-name.by-author, .comment-name.by-author a {
@@ -294,7 +299,6 @@ nav {
   }
 
 } 
-
 
   // Responsive
  @media only screen and (max-width: 766px) {
