@@ -107,8 +107,7 @@
     
   </form>
 
-  <!-- ng-if="!user.payForm" -->
-  <form class="checkout" id="payment-form" ng-submit="user.pay()">
+  <form class="checkout" id="payment-form" ng-submit="user.pay()" ng-if="!user.payForm">
     <span class="payment-errors"></span>
     <div class="paymessage">
       {{user.payMessage}}
