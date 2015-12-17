@@ -114,13 +114,14 @@ nav {
     Comments
  ========================*/
 
-  // * {
-  //   margin: 0;
-  //   padding: 0;
-  //   -webkit-box-sizing: border-box;
-  //   -moz-box-sizing: border-box;
-  //   box-sizing: border-box;
-  // }
+.btn-danger {
+  background-color: #CC776A;
+  border-color: #CC776A; 
+}
+.btn-info {
+  background-color: #611B85;
+  border-color: #611B85;
+}
 
 // Biggests Comments Container
  .comments-container {
