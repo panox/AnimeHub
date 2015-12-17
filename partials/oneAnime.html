@@ -18,10 +18,13 @@
   <h3>Comments</h3> 
   <!-- Create New Comments -->
   <form ng-submit="anime.createComment(anime.selectedAnime._id)">
+    <label>Title</label>
     <input type="text" name="title" placeholder="Title" ng-model="anime.commentModel.title">
 
-    <input type="text" name="content" placeholder="Content" ng-model="anime.commentModel.content">
+    <label>Content</label>
+    <textarea name="content" placeholder="Content" ng-model="anime.commentModel.content"></textarea>
 
+    <input type="submit" value="Submit">
   </form>
 
   <!-- Show all comments -->
@@ -31,7 +34,7 @@
       <!-- Show one comment -->
       <div ng-if="anime.selectedEdit._id !== comment._id">
         {{comment.title}} <br>
-        {{comment.content}} <br>
+        <p>{{comment.content}}</p>
         User: {{comment.user.username}}
       </div>
 
