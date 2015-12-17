@@ -23,12 +23,12 @@
       <h1>Comments</h1>
 
       <!-- Create New Comments -->
-      <form ng-submit="anime.createComment(anime.selectedAnime._id)">
-        <input type="text" name="title" placeholder="Title" ng-model="anime.commentModel.title">
+      <form ng-submit="anime.createComment(anime.selectedAnime._id)" class="form-inline">
+        <input type="text" name="title" placeholder="Title" ng-model="anime.commentModel.title" class="form-control">
 
-        <input type="text" name="content" placeholder="Content" ng-model="anime.commentModel.content">
+        <input type="text" name="content" placeholder="Content" ng-model="anime.commentModel.content" class="form-control">
 
-        <input type="submit" value="Submit" class="btn btn-sm btn-primary blue-submit">
+        <input type="submit" value="Submit" class="btn btn-primary blue-submit">
       </form>
 
       <ul id="comments-list" class="comments-list" ng-if="anime.selectedAnime.comments.length > 0">
@@ -60,9 +60,9 @@
               </div>
 
 
-              <form ng-if="anime.selectedEdit._id === comment._id" ng-submit="anime.editComment()">
-                <input name="title" ng-value="anime.selectedEdit.title" ng-model="anime.commentEditModel.title">
-                <input name="content" ng-value="anime.selectedEdit.content" ng-model="anime.commentEditModel.content">
+              <form ng-if="anime.selectedEdit._id === comment._id" ng-submit="anime.editComment()" class="form-inline">
+                <input name="title" ng-value="anime.selectedEdit.title" ng-model="anime.commentEditModel.title" class="form-control">
+                <input name="content" ng-value="anime.selectedEdit.content" ng-model="anime.commentEditModel.content" class="form-control">
                 <input type="submit" value="Submit" class="btn btn-sm btn-primary blue-submit">
               </form>
 
