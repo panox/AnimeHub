@@ -65,10 +65,33 @@ nav {
   color: white;
   line-height: 1.5;
   letter-spacing: 1.2px;
-  margin-bottom: 9px;
+  margin: 0 auto;
+  text-align: center;
 
   .title{
     font-size: 19px;
+  }
+  .image {
+    margin: 0 auto;
+  }
+
+  .btnz {
+   padding: 10px 15px;
+   border:none;
+   background-color: #ececec;
+   text-decoration: none;
+   font-size: 15px;
+   color: #FFF;
+   outline: none;
+
+   &:hover {
+    color: #efefef;
+   }
+
+  }
+
+  .facebook {
+    background-color: #3b5998;
   }
 }
 
