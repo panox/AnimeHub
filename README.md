@@ -25,11 +25,21 @@ A person who watches new anime when a new season comes out.
 * A user can make a donation to the site.
 
 ### Mockups
+![image](http://imgur.com/PXczKqI.png)
 
 ### Database Diagram 
 
+![image](http://imgur.com/MO9hBaE.png)
+
 ### Blog Diagram 
 In the creating this website a blog was kept with refernces to usefull code for future reference. [Blog](http://panox-animehub.blogspot.co.uk/)
+
+### Struggles
+* Figuring how to populate a second time for deeper sub documents
+* Making angular ui router work with params
+
+### Differently If I could start over
+Modularize the html part with angular more, to achieve more managable html code base. For similar reasons, seperate the scss in different files
 
 ###Aims for the future
 
@@ -37,4 +47,8 @@ In the creating this website a blog was kept with refernces to usefull code for 
 * Chat Room
 * Users Profiles
 * User Anime List on Profile
+
+###Final Product
+![image](http://imgur.com/sCbS6SM.png)
+
 
