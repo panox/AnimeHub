@@ -39,21 +39,26 @@
             <!-- Comment Box -->
             <div class="comment-box">
             
-              <div class="comment-head">
-                <h6 class="comment-name by-author">
-                  {{comment.user.username}}
-                </h6>
-                <!-- Check if user id === comment.user -->
-                <div ng-if="anime.userToken._id === comment.user._id">
-                  <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)">  
-                    Edit
-                  </button>
-                  <button ng-click="anime.removeComment(comment)">Delete</button>
+
+              <div ng-if="anime.selectedEdit._id !== comment._id">
+
+                <div class="comment-head">
+                  <h6 class="comment-name by-author">
+                    {{comment.user.username}}
+                  </h6>
+                  <!-- Check if user id === comment.user -->
+                  <div ng-if="anime.userToken._id === comment.user._id">
+                    <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)">  
+                      Edit
+                    </button>
+                    <button ng-click="anime.removeComment(comment)">Delete</button>
+                  </div>
                 </div>
-              </div>
-              <div class="comment-content">
-                <span>{{comment.title}}</span>
-                <p>{{comment.content}}</p>
+                <div class="comment-content">
+                  <span>{{comment.title}}</span>
+                  <p>{{comment.content}}</p>
+                </div>
+
               </div>
 
 
