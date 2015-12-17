@@ -28,35 +28,6 @@ body {
   > p + p { margin-top: 15px; }
 }
 
-.checkout-header {
-  position: relative;
-  margin: -15px -15px 15px;
-}
-
-.checkout-title {
-  padding: 0 15px;
-  line-height: 38px;
-  font-size: 13px;
-  font-weight: bold;
-  color: #7f889e;
-  text-shadow: 0 1px rgba(white, .7);
-  background: #eceff5;
-  border-bottom: 1px solid #c5ccdb;
-  border-radius: 7px 7px 0 0;
-  @include linear-gradient(top, #f5f8fb, #e9edf3);
-  @include box-shadow(inset 0 1px white);
-
-  &:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    @include box-shadow(0 1px 2px rgba(black, .08));
-  }
-}
-
 .checkout-price {
   position: absolute;
   top: -14px;
