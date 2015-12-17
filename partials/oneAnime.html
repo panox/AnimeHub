@@ -1,11 +1,17 @@
 <!-- Selected Anime -->
-<div>
-  <img ng-src="{{anime.selectedAnime.picture}}" class="img-responsive">
-  <div> {{anime.selectedAnime.title}} </div>
-  <div> Score: {{anime.selectedAnime.rating}} </div>
-  <!-- Facebook Share -->
-  <button ng-click="anime.share(anime.selectedAnime)">SHARE</button>
-  <p> {{anime.selectedAnime.description}} </p>
+<div class="row oneAnime">
+  <div class="col-sm-4">
+    <div class="title"> {{anime.selectedAnime.title}} </div>
+    <img ng-src="{{anime.selectedAnime.picture}}" class="img-responsive">
+    <div class="score"> 
+      Score: {{anime.selectedAnime.rating}} 
+      <span>
+        <!-- Facebook Share -->
+        <button ng-click="anime.share(anime.selectedAnime)">SHARE</button>
+      </span>
+    </div>
+    <p class="description"> {{anime.selectedAnime.description}} </p>
+  </div>
 </div>
 
 <section>
