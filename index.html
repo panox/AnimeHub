@@ -107,19 +107,20 @@
     
   </form>
 
-  <form class="checkout">
+  <!-- ng-if="!user.payForm" -->
+  <form class="checkout" id="payment-form" ng-submit="user.pay()">
     <span class="payment-errors"></span>
     <div class="paymessage">
       {{user.payMessage}}
     </div>
     <p>
-      <input type="text" class="checkout-input checkout-name" placeholder="Amount £" autofocus>
-      <input type="text" class="checkout-input checkout-exp" placeholder="MM">
-      <input type="text" class="checkout-input checkout-exp" placeholder="YY">
+      <input type="text" class="checkout-input checkout-name" placeholder="Amount £" ng-model="user.pay.amount" autofocus>
+      <input type="text" class="checkout-input checkout-exp" placeholder="MM" data-stripe="exp-month">
+      <input type="text" class="checkout-input checkout-exp" placeholder="YYYY" data-stripe="exp-year">
     </p>
     <p>
-      <input type="text" class="checkout-input checkout-card" placeholder="4242 4242 4242 4242">
-      <input type="text" class="checkout-input checkout-cvc" placeholder="CVC">
+      <input type="text" class="checkout-input checkout-card" placeholder="4242 4242 4242 4242" data-stripe="number">
+      <input type="text" class="checkout-input checkout-cvc" placeholder="CVC" data-stripe="cvc">
     </p>
     <p>
       <input type="submit" value="Purchase" class="checkout-btn">
