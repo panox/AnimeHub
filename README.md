@@ -31,7 +31,7 @@ A person who watches new anime when a new season comes out.
 
 ![image](http://imgur.com/MO9hBaE.png)
 
-### Blog Diagram 
+### Blog 
 While creating this website a blog was kept with refernces to usefull code for future reference. [Blog](http://panox-animehub.blogspot.co.uk/)
 
 ### Struggles
