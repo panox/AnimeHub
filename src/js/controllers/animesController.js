@@ -27,7 +27,6 @@ function animesController($stateParams, Anime, Comment, TokenService, CLIENT){
   // get one anime
   function getOne() {
     Anime.get({ id: $stateParams.animeId }, function(res) {
-      console.log('Anime:', res.anime); // console log one anime object
       self.selectedAnime = res.anime;
     });
   }
@@ -56,19 +55,18 @@ function animesController($stateParams, Anime, Comment, TokenService, CLIENT){
   self.createComment = function(animeId) {
     self.commentModel.user = self.userToken._id;
     Comment.save(
-      { animeId: animeId }, self.commentModel, 
+      { animeId: animeId }, self.commentModel,
       // success
       function(res) {
-        console.log(res);
         var newComment = {
           _id: res.comment._id,
-          title: res.comment.title, 
+          title: res.comment.title,
           content: res.comment.content,
           user: { _id : res.comment.user, username: self.userToken.username}
         };
         self.selectedAnime.comments.push(newComment);
         self.commentModel = {};
-      }, 
+      },
       // error
       function(err) {
         console.log(err.data.message);
