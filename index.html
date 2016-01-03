@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="animeHub" ng-controller="facebookController as facebook">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -47,7 +48,7 @@
         <ul class="nav navbar-nav navbar-right" role="search">
           <button ng-click="user.payFormToggle()" class="btn btn-primary">Make a Donation</button>
         </ul>
-        
+
         <ul class="nav navbar-nav navbar-right">
           <!-- Message For Logged in User -->
           <h4 ng-if="user.loggedIn()">Hello {{user.userToken.username}} !</h4>
@@ -76,6 +77,6 @@
     </p>
   </form>
 
-  <div ui-view></div> 
-  
+  <div ui-view></div>
+
 </body>
