@@ -3,8 +3,8 @@
   <div class="col-sm-4 col-sm-offset-4">
     <div class="title"> {{anime.selectedAnime.title}} </div>
     <img ng-src="{{anime.selectedAnime.picture}}" class="img-responsive image tilt">
-    <div class="score"> 
-      Score: {{anime.selectedAnime.rating}} 
+    <div class="score">
+      Rating: {{anime.selectedAnime.rating}} 
       <span>
         <!-- Facebook Share -->
         <button class="btnz facebook" ng-click="anime.share(anime.selectedAnime)">SHARE</button>
@@ -36,7 +36,7 @@
           <div class="comment-main-level">
             <!-- Comment Box -->
             <div class="comment-box">
-            
+
               <!-- Checks to see if comment is going to be edited -->
               <div ng-if="anime.selectedEdit._id !== comment._id">
 
@@ -46,7 +46,7 @@
                   </h6>
                   <!-- Check if user id === comment.user -->
                   <div ng-if="anime.userToken._id === comment.user._id">
-                    <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)" class="btn btn-sm btn-info">  
+                    <button ng-if="anime.selectedEdit._id !== comment._id" ng-click="anime.selectEdit(comment)" class="btn btn-sm btn-info">
                       Edit
                     </button>
                     <button class="btn btn-sm btn-danger" ng-click="anime.removeComment(comment)">Delete</button>
@@ -73,4 +73,3 @@
     </div>
 
 </section>
-
