@@ -30,7 +30,7 @@ function usersController(User, TokenService, $window, ROOT, $state, $timeout){
     var $form = $('#payment-form');
     // disable button after first click
     $form.find('button').prop('disabled', true);
-    Stripe.card.createToken($form, stripeResponseHandler);
+    Stripe.card.createToken(self.card, stripeResponseHandler);
   };
 
   // function with reponse from stripe create token
@@ -64,7 +64,7 @@ function usersController(User, TokenService, $window, ROOT, $state, $timeout){
   // method to login
   self.login = function() {
     User.login(
-      self.user, 
+      self.user,
       function(res) {
         var userToken = res.token;
         TokenService.saveUserToken(userToken);
@@ -79,7 +79,7 @@ function usersController(User, TokenService, $window, ROOT, $state, $timeout){
   // method to signup
   self.signup = function() {
     User.signup(
-      self.user, 
+      self.user,
       function(res) {
         self.signupMessage = res.message;
         goToRoot();
@@ -100,7 +100,7 @@ function usersController(User, TokenService, $window, ROOT, $state, $timeout){
     return !!TokenService.getUserToken();
   };
 
-  // show form 
+  // show form
   self.showEditForm = function() {
     if (!self.EditForm) {
       self.EditForm = true;
@@ -114,11 +114,11 @@ function usersController(User, TokenService, $window, ROOT, $state, $timeout){
   self.editUser = function(user) {
     var data = {
       username: self.userEditData.username || user.username,
-      picture: self.userEditData.picture || user.picture 
+      picture: self.userEditData.picture || user.picture
     };
     // get user login data to send
-    var logiData = 
-      { email: user.local.email, 
+    var logiData =
+      { email: user.local.email,
         password: self.userEditData.password
       };
     if (self.userEditData.password === "") {
@@ -130,7 +130,7 @@ function usersController(User, TokenService, $window, ROOT, $state, $timeout){
         // sucess
         function(res) {
           // change the token
-          User.login(logiData, function(res) { 
+          User.login(logiData, function(res) {
             var userToken = res.token;
             TokenService.saveUserToken(userToken);
             goToRoot();
