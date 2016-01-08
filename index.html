@@ -66,12 +66,12 @@
     </div>
     <p>
       <input type="text" class="checkout-input checkout-name" placeholder="Amount £" ng-model="user.pay.amount" autofocus>
-      <input type="text" class="checkout-input checkout-exp" placeholder="MM" data-stripe="exp-month">
-      <input type="text" class="checkout-input checkout-exp" placeholder="YYYY" data-stripe="exp-year">
+      <input type="text" class="checkout-input checkout-exp" placeholder="MM"  ng-model="payment.card.exp-month">
+      <input type="text" class="checkout-input checkout-exp" placeholder="YYYY" ng-model="payment.card.exp-year">
     </p>
     <p>
-      <input type="text" class="checkout-input checkout-card" placeholder="4242 4242 4242 4242" data-stripe="number">
-      <input type="text" class="checkout-input checkout-cvc" placeholder="CVC" data-stripe="cvc">
+      <input type="text" class="checkout-input checkout-card" placeholder="4242 4242 4242 4242" ng-model="user.card.number">
+      <input type="text" class="checkout-input checkout-cvc" placeholder="CVC" ng-model="payment.card.cvc">
     </p>
     <p>
       <input type="submit" value="Purchase" class="checkout-btn">
